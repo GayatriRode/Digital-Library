@@ -1,0 +1,434 @@
+[
+  {
+    "id": 1,
+    "name": "Taj Mahal",
+    "location": "Agra",
+    "description": "An ivory-white marble mausoleum on the south bank of the Yamuna river.",
+    "image": "https://img.freepik.com/free-photo/mesmerizing-shot-famous-historic-taj-mahal-agra-india_181624-16028.jpg?size=626&ext=jpg&ga=GA1.1.980550786.1713343498&semt=ais_user",
+    "category": "Monuments",
+    "state": "Uttar Pradesh"
+    },
+    {
+      "id": 2,
+      "name": "Varanasi Ghats",
+      "location": "Varanasi",
+      "description": "A city on the banks of the Ganges known for its ghats and spiritual significance.",
+      "image": "https://img.freepik.com/free-photo/udaipur-city-view-from-hotel-balcony-rajasthan-india_53876-65505.jpg?t=st=1716873279~exp=1716876879~hmac=f34d2006e032a69725df98d57c08b18673d45727150ee1da541680d30cd739bb&w=1060",
+      "category": "Religious Sites",
+      "state": "Uttar Pradesh"
+    },
+    {
+      "id": 3,
+      "name": "Fatehpur Sikri",
+      "location": "Agra",
+      "description": "A city founded in 1569 by the Mughal emperor Akbar.",
+      "image": "https://images.pexels.com/photos/6185940/pexels-photo-6185940.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "category": "Historical Places",
+      "state": "Uttar Pradesh"
+    },
+    {
+      "id": 4,
+      "name": "Agra Fort",
+      "location": "Agra",
+      "description": "A historical fort in the city of Agra in India.",
+      "image": "https://planetofhotels.com/guide/sites/default/files/styles/paragraph__hero_banner__hb_image__1880bp/public/hero_banner/Agra_Fort.jpg",
+      "category": "Historical Places",
+      "state": "Uttar Pradesh"
+    },
+    {
+      "id": 5,
+      "name": "Buland Darwaza",
+      "location": "Fatehpur Sikri",
+      "description": "A monumental gateway in the city of Fatehpur Sikri.",
+      "image": "https://live.staticflickr.com/3764/32586600803_9f82aee5c5_h.jpg",
+      "category": "Monuments",
+      "state": "Uttar Pradesh"
+    },
+    {
+      "id": 6,
+      "name": "Panch Mahal",
+      "location": "Fatehpur Sikri",
+      "description": "A five-storied palatial structure in the city of Fatehpur Sikri.",
+      "image": "https://media.istockphoto.com/id/183041743/photo/fatehpur-sikri-panch-mahal.jpg?s=612x612&w=0&k=20&c=7Gv77xbWu4aooyXJjDlAVxwy0hyTR-ylF7xFQEbq0ks=",
+      "category": "Historical Places",
+      "state": "Uttar Pradesh"
+    },
+    {
+      "id": 7,
+      "name": "Gateway of India",
+      "location": "Mumbai",
+      "description": "An iconic monument built during the British Raj.",
+      "image": "https://t3.ftcdn.net/jpg/02/00/55/94/360_F_200559473_wEDZgxSDPPjQfgX3sQqXcjz4ph1a79Yt.jpg",
+      "category": "Monuments",
+      "state": "Maharashtra"
+    },
+    {
+      "id": 8,
+      "name": "Ajanta Caves",
+      "location": "Aurangabad",
+      "description": "Buddhist cave monuments which date from the 2nd century BCE.",
+      "image": "https://indiaforbeginners.com/wp-content/uploads/2020/04/India-for-Beginners-custom-tours-5.jpg",
+      "category": "Historical Places",
+      "state": "Maharashtra"
+    },
+    {
+      "id": 9,
+      "name": "Ellora Caves",
+      "location": "Aurangabad",
+      "description": "Rock-cut cave complexes dating back to the 6th century AD.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Entrance_to_the_Ellora_Caves.jpg/800px-Entrance_to_the_Ellora_Caves.jpg",
+      "category": "Historical Places",
+      "state": "Maharashtra"
+    },
+    {
+      "id": 10,
+      "name": "Elephanta Caves",
+      "location": "Mumbai",
+      "description": "Ancient rock-cut caves dedicated to Lord Shiva.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Elephanta_Cave_5.jpg/800px-Elephanta_Cave_5.jpg",
+      "category": "Historical Places",
+      "state": "Maharashtra"
+    },
+    {
+      "id": 11,
+      "name": "Shaniwar Wada",
+      "location": "Pune",
+      "description": "A historical fortification in the city of Pune.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Shaniwarwada_Pune.jpg/800px-Shaniwarwada_Pune.jpg",
+      "category": "Historical Places",
+      "state": "Maharashtra"
+    },
+    {
+      "id": 12,
+      "name": "Chhatrapati Shivaji Maharaj Terminus",
+      "location": "Mumbai",
+      "description": "A historic railway station in Mumbai.",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Chhatrapati_Shivaji_Terminus_%28Victoria_Terminus%29_Station_April_2018.jpg/800px-Chhatrapati_Shivaji_Terminus_%28Victoria_Terminus%29_Station_April_2018.jpg",
+      "category": "Historical Places",
+      "state": "Maharashtra"
+    },
+    {
+      "id": 13,
+      "name": "Jaipur City Palace",
+      "location": "Jaipur",
+      "description": "A royal palace complex in the heart of Jaipur.",
+      "image": "https://media.istockphoto.com/id/487804438/photo/jaipur-india-chandra-mahal-palace-within-the-city-palace.jpg?s=612x612&w=0&k=20&c=nMPsdxL9iCyKhDFHmh8cE2ItkC8gp7awos6pL_t076s=",
+      "category": "Historical Places",
+      "state": "Rajasthan"
+    },
+    {
+      "id": 14,
+      "name": "Hawa Mahal",
+      "location": "Jaipur",
+      "description": "A palace constructed of red and pink sandstone.",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXAlc1CR2MyMbG0qn9CuYNinmMonhHuK1AVQ&s",
+      "category": "Historical Places",
+      "state": "Rajasthan"
+    },
+    {
+      "id": 15,
+      "name": "Jaisalmer Fort",
+      "location": "Jaisalmer",
+      "description": "A massive sandcastle rising from the sandy plains like a mirage.",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSczk_aYRHXRQAbFQD976csikQ5MC7x8nsFBw&s",
+      "category": "Historical Places",
+      "state": "Rajasthan"
+    },
+    {
+      "id": 16,
+      "name": "Amber Fort",
+      "location": "Jaipur",
+      "description": "A fort located in Amer, Rajasthan.",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4qvwNm9VdX7sa9et1OshFqaOeszOL4ZNr3g&s",
+      "category": "Forts",
+      "state": "Rajasthan"
+    },
+    {
+      "id": 17,
+      "name": "Mount Abu",
+      "location": "Rajasthan",
+      "description": "The only hill station in Rajasthan, known for its scenic beauty and Dilwara Temples.",
+      "image": "https://images.unsplash.com/photo-1611076763501-55d80ccc93cb?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW91bnQlMjBhYnV8ZW58MHx8MHx8fDA%3D",
+      "category": "Hill Stations",
+      "state": "Rajasthan"
+    },
+    {
+      "id": 18,
+      "name": "Pushkar",
+      "location": "Rajasthan",
+      "description": "A holy city known for its Brahma Temple and Pushkar Lake.",
+      "image": "https://t4.ftcdn.net/jpg/02/46/88/67/360_F_246886773_BAJqfMMVpReatxLZrUhiX2bRzxZuDryE.jpg",
+      "category": "Religious Sites",
+      "state": "Rajasthan"
+    },
+    {
+      "id": 19,
+      "name": "Backwaters of Alleppey",
+      "location": "Alappuzha",
+      "description": "A network of interconnected canals, rivers, lakes, and inlets.",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXqWX_5NUkbkz6y3P9oWkgViJ2fCP0-XrSaA&s",
+      "category": "Natural Attractions",
+      "state": "Kerala"
+    },
+          {
+            "id": 20,
+            "name": "Munnar Tea Plantations",
+            "location": "Munnar",
+            "description": "Vast stretches of tea plantations amidst misty hills.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Munnar_landscape.jpg/800px-Munnar_landscape.jpg",
+            "category": "Natural Attractions",
+            "state": "Kerala"
+          },
+          {
+            "id": 21,
+            "name": "Periyar Wildlife Sanctuary",
+            "location": "Thekkady",
+            "description": "A protected area for elephants and tigers.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Thekkady_Kerala.jpg/800px-Thekkady_Kerala.jpg",
+            "category": "Wildlife Sanctuaries",
+            "state": "Kerala"
+          },
+          {
+            "id": 22,
+            "name": "Kumarakom Bird Sanctuary",
+            "location": "Kumarakom",
+            "description": "A haven for migratory birds including Siberian storks.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Kumarakom_Bird_Sanctuary_2018.jpg/800px-Kumarakom_Bird_Sanctuary_2018.jpg",
+            "category": "Wildlife Sanctuaries",
+            "state": "Kerala"
+          },
+          {
+            "id": 23,
+            "name": "Fort Kochi",
+            "location": "Kochi",
+            "description": "A historic seaside town known for its blend of Indian and European architecture.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Fort_Cochin_fish_nets.jpg/800px-Fort_Cochin_fish_nets.jpg",
+            "category": "Historical Places",
+            "state": "Kerala"
+          },
+          {
+            "id": 24,
+            "name": "Athirappilly Waterfalls",
+            "location": "Thrissur",
+            "description": "A majestic waterfall amidst lush greenery.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Athirappilly_Waterfall.jpg/800px-Athirappilly_Waterfall.jpg",
+            "category": "Natural Attractions",
+            "state": "Kerala"
+      },
+      {
+            "id": 25,
+            "name": "Meenakshi Temple",
+            "location": "Madurai",
+            "description": "A historic Hindu temple dedicated to Goddess Meenakshi and Lord Sundareswarar.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Meenakshi_Amman_Temple_Madurai.jpg/800px-Meenakshi_Amman_Temple_Madurai.jpg",
+            "category": "Religious Sites",
+            "state": "Tamil Nadu"
+          },
+          {
+            "id": 26,
+            "name": "Brihadeeswarar Temple",
+            "location": "Thanjavur",
+            "description": "A UNESCO World Heritage Site, also known as the Big Temple.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Brihadeeswarar_Temple%2C_Thanjavur.jpg/800px-Brihadeeswarar_Temple%2C_Thanjavur.jpg",
+            "category": "Religious Sites",
+            "state": "Tamil Nadu"
+          },
+          {
+            "id": 27,
+            "name": "Marina Beach",
+            "location": "Chennai",
+            "description": "The second-longest urban beach in the world.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Marina_beach.JPG/800px-Marina_beach.JPG",
+            "category": "Natural Attractions",
+            "state": "Tamil Nadu"
+          },
+          {
+            "id": 28,
+            "name": "Mahabalipuram Shore Temple",
+            "location": "Mahabalipuram",
+            "description": "A UNESCO World Heritage Site dedicated to Lord Shiva.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Shore_Temple_at_Mahabalipuram.jpg/800px-Shore_Temple_at_Mahabalipuram.jpg",
+            "category": "Religious Sites",
+            "state": "Tamil Nadu"
+          },
+          {
+            "id": 29,
+            "name": "Ooty",
+            "location": "Nilgiris",
+            "description": "A popular hill station known for its scenic beauty and tea gardens.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Ooty_Boat_House.jpg/800px-Ooty_Boat_House.jpg",
+            "category": "Hill Stations",
+            "state": "Tamil Nadu"
+          },
+          {
+            "id": 30,
+            "name": "Kodaikanal",
+            "location": "Dindigul",
+            "description": "A hill town famous for its pleasant climate and scenic beauty.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Kodaikanal_view.jpg/800px-Kodaikanal_view.jpg",
+            "category": "Hill Stations",
+            "state": "Tamil Nadu"
+      },
+      {
+            "id": 31,
+            "name": "Basilica of Bom Jesus",
+            "location": "Old Goa",
+            "description": "A UNESCO World Heritage Site housing the mortal remains of St. Francis Xavier.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Basilica_of_Bom_Jesus%2C_Goa%2C_India.jpg/800px-Basilica_of_Bom_Jesus%2C_Goa%2C_India.jpg",
+            "category": "Religious Sites",
+            "state": "Goa"
+          },
+          {
+            "id": 32,
+            "name": "Calangute Beach",
+            "location": "Calangute",
+            "description": "One of the most popular beaches in North Goa.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Calangute_Beach.jpg/800px-Calangute_Beach.jpg",
+            "category": "Beaches",
+            "state": "Goa"
+          },
+          {
+            "id": 33,
+            "name": "Dudhsagar Falls",
+            "location": "Sanguem",
+            "description": "A four-tiered waterfall located on the Mandovi River.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Dudhsagar_Water_Falls_-_GOA.jpg/800px-Dudhsagar_Water_Falls_-_GOA.jpg",
+            "category": "Natural Attractions",
+            "state": "Goa"
+          },
+          {
+            "id": 34,
+            "name": "Fort Aguada",
+            "location": "Sinquerim",
+            "description": "A well-preserved 17th-century Portuguese fort.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Fort_Aguada.jpg/800px-Fort_Aguada.jpg",
+            "category": "Historical Places",
+            "state": "Goa"
+          },
+          {
+            "id": 35,
+            "name": "Anjuna Flea Market",
+            "location": "Anjuna",
+            "description": "A vibrant market offering everything from clothing to souvenirs.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Anjuna_Market_-_Flea_market_2014.jpg/800px-Anjuna_Market_-_Flea_market_2014.jpg",
+            "category": "Shopping Destinations",
+            "state": "Goa"
+          },
+          {
+            "id": 36,
+            "name": "Chapora Fort",
+            "location": "Chapora",
+            "description": "A hilltop fort overlooking the Chapora River.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/ChaporaFort1.jpg/800px-ChaporaFort1.jpg",
+            "category": "Historical Places",
+            "state": "Goa"
+      },
+      {
+            "id": 37,
+            "name": "Rohtang Pass",
+            "location": "Manali",
+            "description": "A high mountain pass on the eastern Pir Panjal Range of the Himalayas.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Rohtang_Pass.JPG/800px-Rohtang_Pass.JPG",
+            "category": "Natural Attractions",
+            "state": "Himachal Pradesh"
+          },
+          {
+            "id": 38,
+            "name": "Shimla Ridge",
+            "location": "Shimla",
+            "description": "A large open space in the heart of Shimla town.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Shimla_Mall_Road_6.jpg/800px-Shimla_Mall_Road_6.jpg",
+            "category": "Hill Stations",
+            "state": "Himachal Pradesh"
+          },
+          {
+            "id": 39,
+            "name": "The Ridge",
+            "location": "Shimla",
+            "description": "A large open space with panoramic views of the mountain ranges.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/The_Ridge%2C_Shimla.jpg/800px-The_Ridge%2C_Shimla.jpg",
+            "category": "Hill Stations",
+            "state": "Himachal Pradesh"
+          },
+          {
+            "id": 40,
+            "name": "Kufri",
+            "location": "Shimla",
+            "description": "A small hill station known for its scenic beauty and adventure activities.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Kufri.jpg/800px-Kufri.jpg",
+            "category": "Hill Stations",
+            "state": "Himachal Pradesh"
+          },
+          {
+            "id": 41,
+            "name": "Dalhousie",
+            "location": "Chamba",
+            "description": "A hill station with colonial-era buildings and panoramic views.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Dalhousie_town.jpg/800px-Dalhousie_town.jpg",
+            "category": "Hill Stations",
+            "state": "Himachal Pradesh"
+          },
+          {
+            "id": 42,
+            "name": "Manikaran Sahib",
+            "location": "Kullu",
+            "description": "A Sikh pilgrimage center famous for its hot springs.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Manikaran.JPG/800px-Manikaran.JPG",
+            "category": "Religious Sites",
+            "state": "Himachal Pradesh"
+      },
+      {
+            "id": 43,
+            "name": "Mysore Palace",
+            "location": "Mysore",
+            "description": "A historic palace known for its grandeur and architectural beauty.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Mysore_Palace_-_2017_-_189859.jpg/800px-Mysore_Palace_-_2017_-_189859.jpg",
+            "category": "Historical Places",
+            "state": "Karnataka"
+          },
+          {
+            "id": 44,
+            "name": "Hampi",
+            "location": "Bellary",
+            "description": "A UNESCO World Heritage Site with ruins of the Vijayanagara Empire.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Virupaksha_temple_hampi.jpg/800px-Virupaksha_temple_hampi.jpg",
+            "category": "Historical Places",
+            "state": "Karnataka"
+          },
+          {
+            "id": 45,
+            "name": "Coorg",
+            "location": "Kodagu",
+            "description": "A scenic hill station known for its coffee plantations and misty hills.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Coorg_Madikeri.jpg/800px-Coorg_Madikeri.jpg",
+            "category": "Hill Stations",
+            "state": "Karnataka"
+          },
+          {
+            "id": 46,
+            "name": "Gokarna",
+            "location": "Uttara Kannada",
+            "description": "A coastal town famous for its pristine beaches and temples.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Gokarna_Beach.jpg/800px-Gokarna_Beach.jpg",
+            "category": "Beaches",
+            "state": "Karnataka"
+          },
+          {
+            "id": 47,
+            "name": "Jog Falls",
+            "location": "Shimoga",
+            "description": "One of the highest plunge waterfalls in India.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Jog_falls_2010.jpg/800px-Jog_falls_2010.jpg",
+            "category": "Natural Attractions",
+            "state": "Karnataka"
+          },
+          {
+            "id": 48,
+            "name": "Bannerghatta National Park",
+            "location": "Bangalore",
+            "description": "A wildlife sanctuary known for its safari rides and butterfly park.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Bannerghatta_National_Park_%281%29.jpg/800px-Bannerghatta_National_Park_%281%29.jpg",
+            "category": "Wildlife Sanctuaries",
+            "state": "Karnataka"
+          }
+        ]

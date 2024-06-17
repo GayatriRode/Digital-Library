@@ -1,0 +1,628 @@
+[
+    {
+      "state": "Uttar Pradesh",
+      "places": [
+        {
+          "id": 1,
+          "name": "Taj Mahal",
+          "location": "Agra",
+          "description": "An ivory-white marble mausoleum on the south bank of the Yamuna river.",
+          "image": "https://img.freepik.com/free-photo/mesmerizing-shot-famous-historic-taj-mahal-agra-india_181624-16028.jpg?size=626&ext=jpg&ga=GA1.1.980550786.1713343498&semt=ais_user",
+          "category": "Monuments"
+        },
+        {
+          "id": 2,
+          "name": "Varanasi Ghats",
+          "location": "Varanasi",
+          "description": "A city on the banks of the Ganges known for its ghats and spiritual significance.",
+          "image": "https://img.freepik.com/free-photo/udaipur-city-view-from-hotel-balcony-rajasthan-india_53876-65505.jpg?t=st=1716873279~exp=1716876879~hmac=f34d2006e032a69725df98d57c08b18673d45727150ee1da541680d30cd739bb&w=1060",
+          "category": "Religious Sites"
+        },
+        {
+          "id": 3,
+          "name": "Fatehpur Sikri",
+          "location": "Agra",
+          "description": "A city founded in 1569 by the Mughal emperor Akbar.",
+          "image": "https://images.pexels.com/photos/6185940/pexels-photo-6185940.jpeg?auto=compress&cs=tinysrgb&w=600",
+          "category": "Historical Places"
+        },
+        {
+          "id": 4,
+          "name": "Agra Fort",
+          "location": "Agra",
+          "description": "A historical fort in the city of Agra in India.",
+          "image": "https://planetofhotels.com/guide/sites/default/files/styles/paragraph__hero_banner__hb_image__1880bp/public/hero_banner/Agra_Fort.jpg",
+          "category": "Historical Places"
+        },
+        {
+            "id": 5,
+            "name": "Buland Darwaza",
+            "location": "Fatehpur Sikri",
+            "description": "A monumental gateway in the city of Fatehpur Sikri.",
+            "image": "https://live.staticflickr.com/3764/32586600803_9f82aee5c5_h.jpg",
+            "category": "Monuments"
+        },
+        {
+            "id": 6,
+            "name": "Panch Mahal",
+            "location": "Fatehpur Sikri",
+            "description": "A five-storied palatial structure in the city of Fatehpur Sikri.",
+            "image": "https://media.istockphoto.com/id/183041743/photo/fatehpur-sikri-panch-mahal.jpg?s=612x612&w=0&k=20&c=7Gv77xbWu4aooyXJjDlAVxwy0hyTR-ylF7xFQEbq0ks=",
+            "category": "Historical Places"
+          }
+      ]
+    },
+    {
+      "state": "Delhi",
+      "places": [
+        {
+          "id": 7,
+          "name": "Qutub Minar",
+          "location": "Delhi",
+          "description": "A minaret that forms part of the Qutb complex, a UNESCO World Heritage Site.",
+          "image": "https://images.pexels.com/photos/18291210/pexels-photo-18291210.jpeg?cs=srgb&dl=pexels-timfuzail-18291210.jpg&fm=jpg",
+          "category": "Monuments"
+        },
+        {
+          "id": 8,
+          "name": "Red Fort",
+          "location": "Delhi",
+          "description": "A historic fort in the city of Delhi that served as the main residence of the Mughal Emperors.",
+          "image": "https://t4.ftcdn.net/jpg/03/56/31/17/360_F_356311787_4j9CXZfn1F4Vp2mWRLkHzkLwOf8ofSsZ.jpg",
+          "category": "Forts"
+        },
+        {
+          "id": 9,
+          "name": "India Gate",
+          "location": "Delhi",
+          "description": "A war memorial located astride the Rajpath.",
+          "image": "https://i.pinimg.com/originals/22/5e/6c/225e6c87bdab1a6e5b59e58eda966f35.jpg",
+          "category": "Monuments"
+        },
+        {
+          "id": 10,
+          "name": "Humayun's Tomb",
+          "location": "Delhi",
+          "description": "The tomb of the Mughal Emperor Humayun in Delhi.",
+          "image": "https://c0.wallpaperflare.com/preview/125/989/124/ancient-arches-architecture-building.jpg",
+          "category": "Tombs"
+        },
+        {   
+          "id": 11,
+          "name": "Lotus Temple",
+          "location": "Delhi",
+          "description": "A Bahá'í House of Worship in Delhi, known for its flower-like shape.",
+          "image": "https://c4.wallpaperflare.com/wallpaper/242/693/230/lotus-temple-wallpaper-preview.jpg",
+          "category": "Temples"
+        },
+        {
+          "id": 12,
+          "name": "Akshardham Temple",
+          "location": "Delhi",
+          "description": "A Hindu temple complex in Delhi, known for its architecture and spiritual significance.",
+          "image": "https://i.pinimg.com/originals/62/5c/f7/625cf7d1f13aeababb4669a880e2c4cc.jpg",
+          "category": "Temples"
+          }
+      ]
+    }, 
+    {
+      "state": "Rajasthan",
+      "places": [
+        {
+          "id": 13,
+          "name": "Jaipur City Palace",
+          "location": "Jaipur",
+          "description": "A palace complex in Jaipur, the capital of Rajasthan.",
+          "image": "https://media.istockphoto.com/id/487804438/photo/jaipur-india-chandra-mahal-palace-within-the-city-palace.jpg?s=612x612&w=0&k=20&c=nMPsdxL9iCyKhDFHmh8cE2ItkC8gp7awos6pL_t076s=",
+          "category": "Palaces"
+        },
+        {
+          "id": 14,
+          "name": "Hawa Mahal",
+          "location": "Jaipur",
+          "description": "A palace in Jaipur, India, so named because it was essentially a high screen wall built so the women of the royal household could observe street festivals while unseen from the outside.",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXAlc1CR2MyMbG0qn9CuYNinmMonhHuK1AVQ&s",
+          "category": "Palaces"
+        },
+        {
+          "id": 15,
+          "name": "Jaisalmer Fort",
+          "location": "Jaisalmer",
+          "description": "A fort situated in the city of Jaisalmer.",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSczk_aYRHXRQAbFQD976csikQ5MC7x8nsFBw&s",
+          "category": "Forts"
+        },
+        {
+          "id": 16,
+          "name": "Amber Fort",
+          "location": "Jaipur",
+          "description": "A fort located in Amer, Rajasthan.",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4qvwNm9VdX7sa9et1OshFqaOeszOL4ZNr3g&s",
+          "category": "Forts"
+        },
+        {
+          "id": 17,
+          "name": "Mount Abu",
+          "location": "Rajasthan",
+          "description": "The only hill station in Rajasthan, known for its scenic beauty and Dilwara Temples.",
+          "image": "https://images.unsplash.com/photo-1611076763501-55d80ccc93cb?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW91bnQlMjBhYnV8ZW58MHx8MHx8fDA%3D",
+          "category": "Hill Stations"
+        },
+        {
+          "id": 18,
+          "name": "Pushkar",
+          "location": "Rajasthan",
+          "description": "A holy city known for its Brahma Temple and Pushkar Lake.",
+          "image": "https://t4.ftcdn.net/jpg/02/46/88/67/360_F_246886773_BAJqfMMVpReatxLZrUhiX2bRzxZuDryE.jpg",
+          "category": "Holy Cities"
+        }
+      ]
+    },    
+    {
+      "state": "Maharashtra",
+      "places": [
+        {
+          "id": 19,
+          "name": "Gateway of India",
+          "location": "Mumbai",
+          "description": "An arch-monument built in the early 20th century in the city of Mumbai.",
+          "image": "https://t3.ftcdn.net/jpg/02/00/55/94/360_F_200559473_wEDZgxSDPPjQfgX3sQqXcjz4ph1a79Yt.jpg",
+          "category": "Monuments"
+        },
+        {
+          "id": 20,
+          "name": "Ajanta Caves",
+          "location": "Aurangabad",
+          "description": "Rock-cut Buddhist cave monuments dating from the 2nd century BCE.",
+          "image": "https://indiaforbeginners.com/wp-content/uploads/2020/04/India-for-Beginners-custom-tours-5.jpg",
+          "category": "Historical Places"
+        },
+        {
+          "id": 21,
+          "name": "Nashik",
+          "location": "Maharashtra",
+          "description": "A city known for its temples and as a pilgrimage site for Hindus.",
+          "image": "https://t4.ftcdn.net/jpg/05/43/12/99/360_F_543129961_xjeg0hnR8akVE7RV5kaDTGqmN19VBtvK.jpg",
+          "category": "Pilgrimage Sites"
+        },
+        {
+          "id": 22,
+          "name": "Pune",
+          "location": "Maharashtra",
+          "description": "A historical fortification in the city of Pune.",
+          "image": "https://live.staticflickr.com/4232/35822505446_cac9ed9021_b.jpg",
+          "category": "Forts"
+        },
+        {
+          "id": 23,
+          "name": "Lonavala",
+          "location": "Maharashtra",
+          "description": "A hill station known for its scenic beauty, waterfalls, and trekking trails.",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgOBD1GtrAakGUrycEPbMsupWh6lHg2rCNqUT7c-buNw&s",
+          "category": "Hill Stations"
+        },
+        {
+          "id": 24,
+          "name": "Mahabaleshwar",
+          "location": "Maharashtra",
+          "description": "A hill station known for its strawberries, panoramic views, and Venna Lake.",
+          "image": "https://i.pinimg.com/originals/97/c0/44/97c044c1ce21b208fbd2e6a5a7c5068f.jpg",
+          "category": "Hill Stations"
+        }
+      ]
+    },    
+    {
+      "state": "Karnataka",
+      "places": [
+        {
+          "id": 25,
+          "name": "Mysore",
+          "location": "Karnataka",
+          "description": "A historical palace and a royal residence at Mysore in the Indian state of Karnataka.",
+          "image": "https://images.unsplash.com/photo-1600112356915-089abb8fc71a?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bXlzb3JlJTIwcGFsYWNlfGVufDB8fDB8fHww",
+          "category": "Palaces"
+        },
+        {
+          "id": 26,
+          "name": "Hampi",
+          "location": "Karnataka",
+          "description": "A UNESCO World Heritage Site known for its ancient temples and ruins.",
+          "image": "https://t4.ftcdn.net/jpg/03/75/40/73/360_F_375407347_spt4AF5sxsIt9gBIKVzJl95tiQhEGNXy.jpg",
+          "category": "Historical Places"
+        },
+        {
+          "id": 27,
+          "name": "Bangalore Palace",
+          "location": "Bangalore",
+          "description": "A palace located in Bangalore, Karnataka.",
+          "image": "https://t3.ftcdn.net/jpg/03/41/95/04/360_F_341950409_Gq1sN2OqYgRZrUTvPohSmgQVubaqzlA5.jpg",
+          "category": "Palaces"
+        },
+        {
+          "id": 28,
+          "name": "Coorg",
+          "location": "Karnataka",
+          "description": "A rural district in the southwest Indian state of Karnataka.",
+          "image": "https://media.istockphoto.com/id/1216722235/photo/mountain-with-green-grass-and-beautiful-sky.jpg?s=612x612&w=0&k=20&c=UD4Rmexxtkci9q-gH_PCUaBw6suwTCKp7SkZTXukQ2U=",
+          "category": "Hill Stations"
+        },
+        {
+          "id": 29,
+          "name": "Gokarna",
+          "location": "Karnataka",
+          "description": "A coastal town known for its pristine beaches and temples.",
+          "image": "https://t4.ftcdn.net/jpg/01/41/10/87/360_F_141108787_ExwcXu3yQB4jB3dI0ZSmoExGwp6INrUR.jpg",
+          "category": "Beaches"
+        },
+        {
+          "id": 30,
+          "name": "Belur and Halebidu",
+          "location": "Karnataka",
+          "description": "Historical sites known for their exquisite Hoysala architecture.",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8IxcXYRS-oabRcAVZrwSrAqeg54Eh1Ld5kcBgUcmADA&s",
+          "category": "Historical Places"
+        }
+      ]
+    },    
+    {
+      "state": "Telangana",
+      "places": [
+        {
+          "id": 31,
+          "name": "Charminar",
+          "location": "Hyderabad",
+          "description": "A monument and mosque located in Hyderabad.",
+          "image": "https://w0.peakpx.com/wallpaper/115/843/HD-wallpaper-charminar-public.jpg",
+          "category": "Monuments"
+        },
+        {
+          "id": 32,
+          "name": "Golconda Fort",
+          "location": "Hyderabad",
+          "description": "A fortified citadel and an early capital city of the Qutb Shahi dynasty.",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNW26NHaHJ-Anbs1aAFsd_Kkw1fZkT2Mu8sQ&s",
+          "category": "Forts"
+        },
+        {
+          "id": 33,
+          "name": "Ramoji Film City",
+          "location": "Hyderabad",
+          "description": "The largest film city in the world.",
+          "image": "https://images.unsplash.com/photo-1598610339755-6e4e24737a27?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFtb2ppJTIwZmlsbSUyMGNpdHl8ZW58MHx8MHx8fDA%3D",
+          "category": "Entertainment"
+        },
+        {
+          "id": 34,
+          "name": "Hussain Sagar",
+          "location": "Hyderabad",
+          "description": "A heart-shaped lake in Hyderabad.",
+          "image": "https://images.unsplash.com/photo-1708057366638-dc1f054a4019?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8SHVzc2FpbiUyMFNhZ2FyfGVufDB8fDB8fHww",
+          "category": "Lakes"
+        }
+      ]
+    },    
+    [
+      {
+        "state": "Tamil Nadu",
+        "places": [
+          {
+            "id": 35,
+            "name": "Madurai",
+            "location": "Tamil Nadu",
+            "description": "A historic Hindu temple located on the southern bank of the Vaigai River.",
+            "image": "https://t4.ftcdn.net/jpg/05/02/70/43/360_F_502704383_aRNoCa5y96HcSQyqjGZwq3ZQuumijANE.jpg",
+            "category": "Temples"
+          },
+          {
+            "id": 36,
+            "name": "Chennai",
+            "location": "Tamil Nadu",
+            "description": "A natural urban beach along the Bay of Bengal.",
+            "image": "https://media.istockphoto.com/id/1226340114/photo/puratchi-thalaivar-dr-mgr-central-railway-station-chennai-central-railway-station-india.jpg?s=612x612&w=0&k=20&c=lZjBnWBBoLiApWZUUWP1Vl3XAVdKjYMcgGpItXv_L14=",
+            "category": "Beaches"
+          },
+          {
+            "id": 37,
+            "name": "Tanjavur",
+            "location": "Tamil Nadu",
+            "description": "A Hindu temple dedicated to Shiva located in Thanjavur, Tamil Nadu.",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIC5QU4Ug27Qdih8wVmqzfWSpLB-9XCCXCog&s",
+            "category": "Temples"
+          },
+          {
+            "id": 38,
+            "name": "Ooty",
+            "location": "Tamil Nadu",
+            "description": "A resort town in the Western Ghats mountains, in southern India's Tamil Nadu state.",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5tMdq9HMMt3LSc0sJctwm4D49AAUd6KaCrA&s",
+            "category": "Hill Stations"
+          }
+        ]
+      },
+      {
+        "state": "Kerala",
+        "places": [
+          {
+            "id": 39,
+            "name": "Alleppey",
+            "location": "Kerala",
+            "description": "A network of interconnected canals, rivers, lakes and inlets.",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXqWX_5NUkbkz6y3P9oWkgViJ2fCP0-XrSaA&s",
+            "category": "Backwaters"
+          },
+          {
+            "id": 40,
+            "name": "Munnar",
+            "location": "Kerala",
+            "description": "A town and hill station located in the Idukki district of the southwestern Indian state of Kerala.",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShPycvjnfZ_l6C7R2vn2pJ8iPgZ_8Jd2mMyA&s",
+            "category": "Hill Stations"
+          },    
+        {
+          "id": 41,
+          "name": "Periyar National Park",
+          "location": "Thekkady",
+          "description": "A protected area located in the districts of Idukki and Pathanamthitta in Kerala.",
+          "image": "data:image/jpeg;base64,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",
+          "category": "National Park"
+        },
+        {
+          "id": 42,
+          "name": "Fort Kochi",
+          "location": "Kochi",
+          "description": "A seaside area of Kochi known for its Dutch, Portuguese, and British colonial architecture.",
+          "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhMVFhUVFRUVFRUVFxUVFRUVFRUWFhUVFRcYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLi0BCgoKDg0OGhAQGy0mHyUtKy0tLS8tMC0tLS0tLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAKgBLAMBIgACEQEDEQH/xAAbAAACAwEBAQAAAAAAAAAAAAACAwABBAUGB//EADwQAAEDAgQDBQYFAwMFAQAAAAEAAhEDIQQSMUEFUWEicYGRoQYTMrHB8EJSctHhI2KiFJLxFiRDguIV/8QAGgEAAwEBAQEAAAAAAAAAAAAAAAECAwQFBv/EADARAAICAQMBBgMIAwAAAAAAAAABAhEDBBIhMRMUIkFRkXGx0TJhgaHB4fDxBSNS/9oADAMBAAIRAxEAPwDj0WLZTYlUWLUwL6aTPl8a4I1g5JgpDkPJW0dyY1qhs3QLaLfyjyRjDs5BMa0pjWKGzRChhm8k9mHZu0Hwj5LLjuIU6Amq7KOcOO8fhBWGp7WYNpAdVImI/p1Ig7/ColJLqzSKb6L8jvMwdM7eTiPmtFPAsFw5zTv227+C8u720wQ/8jiOYpvIPoofbjBD8b/Cm+/osnkj/wBfmbKMv+fyPTuwLBo93mCgNPXtT6LmcJ9oMNiSW0akuAkgtc0x0zAT4Lpqlz5kt1xQh1N40f5qv6g3afvuT1SsixJdU/K0+SsPduz1CaqQKxfvf7XKjVb18k1SEAIcKZ5ITh27R6J5pjkFMg5JiMv+ibyHkPogdgW7ABbUJCdsXBy34DqkmiBv52hdghA5nd5KlJktI5eaN296ofey6DqI5DyQGg3knZJhdbQSstZpNyAuk/CtKS7Bt5u81SZEjh1GX5JJXYq4Xlm9PqVldR6H0WykczjRzyUtzit4pRq2fIqgGRGXzn6FDBNHPzFVnK1OpDZAaSnax7kZXOlZawawF58yuiaS5XGqIDZ30Emw6xzXPni1HcdemmnLaefxeOqOJk25CwWTL1WqrAiJv+I79yKGCwIXiNOT5Z7aaiuEfVKblza3EzTxTWF0te2C2LsIFnzyMkHuWSnx2neJIAkkRzA0nqFm4pVp1H0nB4sIF9czmtLXdCHXHKV7WTLFrws8XFgmnU40nZ7Fj01r15/hOMkFhPaZzMlzdiT+YRBPSdwumK45qtyatBsknTOi1yY1y5I4jTic7YBgnMIB5aph4iwQS8XMAyIJOw5pcD6HO9uXO92wfhJcHAyQYhwsDe4XhDTGp/MRvyC9v7QYyjVY1ragc5r5IaQY7JBk7aheXdh/iAmzgfQ9O5eNrJ/7a+B7Ojh/qT+Jzm0IgH8xGv31VPp28SOlo/ddKpRudbOJ0uRf+FmxbJJa38zjpsdPkueErZ0TjSNfsbWLMbRI3Lm6n8TSJHWwX1zOV8h9nC1mIpOqZsoe09mJ12Xrcfxd7HVS01HscCKYc7JlJ/EcoPkCO9dmPUxx+FnPm0jnHtE16feewL153j3Ha1B5bTote0MY4vLiILy8CRH9h8kqhxWnUpurubiWPpFjMjK7Cxznh5GYGkLdh3Ved9rKRD6T3Fxc+lmIdfKc5lrLDsiFqtUpKopo5e7bX4mmb8T7X4gCPdUw4Wce0ZIBmG7acym4L25Ef1qTp504I6khzvqvNV67nSSSZMxtLgQTCwhUsk0+pXZQa6H1nhfEmYhnvKeaJI7QgyNVqqVWtEuIA5kgDzPePNeS9kMXTZh4cQCajsoMSbN0nv1TOOYQ1mBz25ctegGtDMxipUa34tG2OkGTurnqFFL1ZnDTOTfkkemxGKYxpe5wDQCZ5xrHMqYXEtqMa9hlrgCO4rwvEcY/DBzaRjObyMxkG8TpNp10FrkjlcI9oK9KpZ8sLgXNcAAQdbx2T1TjqIuglpZKz6lKoleG/wCo65IcXANlshoAMGSQet/QePoeFcRFRol4c6XWEZozuDTlHSFrHImzCWKSOsSgcVixOODW5gCRJFoEkaxOuoWVvGKRbmzETEDU6kGY0iCb7aJ9pC6sl4clXtZ1C9AXrBUx7Q7ISZPQx56IK2OyxYkFwBOkTYGDc3geK1TRi015G8uQOKUKiU+tBju9Z/ZUQ7HOcluekvqpD6hCtRMJZEjQ6Eh+XkEg10DqitRMXksa5reSS/KNYHeqzLDxqu9lMlrWn9UnyA+ZIhE5qEW2GPHLJJRRyeK+0Ia4NpCYnNmB1nQLTxRpLGF4kEAuhzWjSbuOy8jXbDtb2O832ndFVxb3CC4mNJvHdyXi99k92/zPfWhjHbs8uvqwsfiQ90hoaNIGlt1kVkqlxSdu2d8UkqR3qnBnMqGm+pRaQSM3vQ9lv7qYcio4FkuDq9IZW2vUIebwGkM5gaxqnjhzPyH/AHO/dU3BNkjIIAHPWZXT3aXr/PYw7zH0/nudSszANw/vGVm+/kdgNrAlpac7DLQNCb/ma3ZM9ozgHlpoVy6zGus4CWw3NDgJkXN9Z7jyaOEbJBa2QTqNjcffRMbhmh0ZW30sNRqPr5qIaFp3uZctcmqpHT4ZheGtp1mVsY0l+QMcyhWdlDZcSJaIM5bbhpG8rOyjw9heDiQ9pbDf6NQQfesJdeYOQO8SlDDt5N9ETaLeivuF34nyZ9/qnSEYTE0KGYCr7wEggtpubtBtUb3Jr+PMyloZOvJuu5hpRmkOaD3YQ/8AHxu2OP8AkJVSKZxoSDkbItHa5bw3mFz3OphxcJJcXEgtj4g7+3S43ldIU0+lg529E1oYroHfXLqcd0DLkBN5iJn4Y2Frd69Bi+KSxjfcVA4AE5iwCZMwRcgjLsNDrs6hwwSJDteYH0Wji+DDCMrHARu7N65QqjpIydNjnlfZPJXQ59PidOTnwj3NzSB78AtbEEAhkSTeY5W1nkcQc9+XJRDQAQe0CTJ3Pourk6H1S3NXStBGPRs8/vzfkY8FXexwcaUwI1YQTzIcCNCfTxJzg50vpOi8hhpMOaLRDIiYtGi0x93VgKu6Ju7DvrSpIRhnubGVpgSQDU0NrwGxqF3eI8QqVahdiSX2ZZlUNEDIWmzIJAB5X7lygxaMdiH5u21tw0SGt2AA2tp81nLRYlJNmsNdkcXX3GZxmvmdmdSzOhpeA8NdqMwYRpvC5FTAumQY39e7kuuHg3mPAKgNL6yPvyKpaSF2vmS9bkqpfIye5duZENESQLCJEDW+/wC0buHY/EUiHU6rmm94a6QYkHM03sL9/NU1nXorydfCVb0kGuUZrWzi+HTOn/1HinMAcGPgED3tFjoOcuLhlAEnTlAAiy49UDM1xEQDmygDOSXEnSAO1pBiI5Q/IFA1v3/wmtHBKkhPX5G7b+X0NHD+JBlX3rW5jMta9+dg5ghwlw133WXifEC5wc3sHNMNeSLRa5J215u8E6lhGOm+Wx0LfkUipgnXgh3WwKJaZJcIcdW2/E/dL6HQwfGcgFgXZgSXEmY1ECBBWvjPtG2q5rmUabIAkMzQ4x8Rk9dFxGU3SAW7/hyuNnQYFuS0YjDhriAHxtLBfyKlYI3fN/j9S5aiW1rivw+hv4f7S+5Dv+3ovLgRNTM+AZ+EF1jfXp3yfGPap9djWClSYGgDstbmMAXLo1MX2ubBcc+7DS4kjT/xuNvDw2QVXUxaZJkzkey0kQQ5vT7uhxjvtvn4v6mactlVx8F9DVh+Ihr8zmZwNBOTcG85pGohBU4gS8uyDJcNZIECIbLg0ZiNzF0ttFpALTIOhGmsKvcCYzeoWrxy62/dmSywqtq9kVhqzw6XvMX+EM689fNN417W56PuxhqJGWC9zXwfhbm2l0iQRoST3ZzQkGXlvaImAbAxoe4rgcTptcSA6oTmgZjZ13AloiwjL5lcOrg+Ovv+56GjyLlKvZfQ5LigTsRSLDlMSNYSSuB8Hci1SisoA9jBQUmm55k+lvom5UNFvZHcvY2nk7uBYZ29dW+rT/8ASN9EERPceR5qq5jKeTgP93Z+qcZTUUJyfAulcciLEdUeQJb7HNsbO+h+/omQU18CZX6kVqsqvKnTFa9SwVqw9Ujc/wCP7LKGrXRwxN9vL1KbXHI4vng2U8QT+J0/q/ZXxF5IHaJ73EpTKTRuPC/yR4miI19CpjxJHS7eKSMElQkqZgOap1TkuuzyKBzFWHHkqNQ8gqkqbLr7kNaXch5/ytfE6kuBLQ0w2wIOgvuVkpOK18RrZiCcswAYQ+qKj9iX4HNq0gdLHosdbBvloDtXXgxsTMLoOrAf8Jfvbt8fkspwgy8eTIlwZqFOq10Ez2QTrqTAP+K1MxQbOaRB7zoOXih97LiRyAvpYu/dZK+JxABhjDM6E28DCncsa4b+ZdPI/El5edHXGJ+GHGCbzItB5+CKjiZb8Qm51E7xbuXm343Eamm2P0/zKx067J/qUSerXPB0Eanp6qHrafT3tfUruKa6/J/Q91Rf8UieyY1ifBczG4sU7uteAvNYWq2wHvmyTOVwiLRGnWVqxtMEkGs52UEiddrXTercotxX5/0JaJRklJ8fD+zp4PilMvDWuIcXRcGNSfqurUzE5sxm/LdcLA8PYyoHZi4tNpiPhn6rrOrLbTtuL3mGpUVJbH7meu+qGZQCe4s+qSyvUJDTTeBlOmUb8w4cz5rYXoC9N41d2xRycVtQkYBpaBNQE69t23QEhMw+EDJhz4Ii7iYg7ckXvUDasgHnfzRtxp9A3ZJJ8ijQho/rPbv+E+cjquFjcQ+Gg1HdmLTab3ELvVxIXlccwgwdRMrh1b2rg9DRrc+f0M9V5cSSSSdSbkoIVwhXmHphKBSfTRRAHsn6HuVtZZC9xgqZivatHjVKisS3sO/SUxrpAMagHbfuKxcTHZabWeDdKo1zAa2qzSAMribfPyUPIlKiuybhdnQr2Y42+F1rmbHuQYesBlY6SYInQdkAjzBnzWSu6qQQbg2kDL8RiCHCd9kGJbAzHOHAi5JNpg3FhZDy07SCOJNU31OwanRCXLPSuOxUzd+V3ygqPe8fgzfpN/Irfe/5+xzrHHp+3zHynUmTv81kFdv4uz+q3rp6rqYRrYBJ8dQUnyjWHWqCp0vuU2rRtMbdVpZl2HyTHu7J6LK+TuxxW1p+hwS1UQmvugIC7aPEb5FyqROCFQ0UiXTKx07kuVRKllqwXOS+SYUICxkdMKSLYiVBWriZT5ZaW2g0iITJUCppNkJyigWYRg2CycQwGYgt8VvEKiUpY4ONUOGWaldnOwGHqNfLtL+dgukXIVEQSgqQ5t5HbRcqlFFW4SxkVAK5VSpbNFFkK8xj3HM4HUn+V6Ylc7EYIOfJXNqIuapHVp3sfJwTScLpRK9TUwzSAI0XDx9MNsBuuLJg2Kzshl3cGJTMhlRc5sezVpeZXmXsWeTQjiQ/pnoWn/ILTUYHWIBCzY+TSdGsfK6bTqSAeYU2tz+C/UqntXxf6Cq1Etb2XGMzLO7QHbbF9QpUxgE06rSJlsi7TI89CE6pcEFIe5uaHD4m/wCTdI5GD6JN19kEr+1+4eE925jZa3NAmAJkCCZ1TzRjQuH/ALE+jpCw4Ok0gtLZg/FJEzfbdONHLdrn/pzAjvuFUZeFWiZw8Tp+/Qe01IBDgbaOEeo/ZDhIBMh7DNywtyydLGx22KxMfWIGVzOglpPyWWr72YObNcGJJIIFuzt0Wc8vCdM1xY6bVo9L/wDsGm7I8NIiZANN7e9jzB8D4LSeJU6jeyQ7n+E+IOi8YyRIIiQdZH3oglZR1Di7aN5YrjSZ6ilUJaDGoB9FCVwKNNztA7a4mL7kfXot+DZVBOZ1phwuToDYmeYXVj1LlXBw5NKo3UjfKqVRKAuWjmZxxBypKDMpKncaKBbiqaVTlGBT5lVSGKwqVEq7IqwpUlLJQucluKWOxjHWV5khrrIKtSASBMbDWN1O+kX2Roe+3iPmEWZc7/XU3AdqLt1tuN9FpbUB0IPddJZE+jK7Kuo/OqzJWdVnT3BsHZlRclZ1WdG4ewbmQygzKZkrHtE4yqW3C4mKxGYrtYtwymV597r9JXHqW+h0YkU2lKCUwVPvohqgSuV9Dc9PKtCFF6Z55b9Cs2HdAhOckEXUsaQ7OUh5MjpPqmhA4IYBYepCvHPJYQ37HJAEZS6qgrmzjigTeAOt5TnVaksBqHkCNQOXX+FqLFmq01z9ntXBsp2+TTicSDElxA/MbHrAhbOH4hgY2YkCCQLnv5yuJVplNo18oumsrUrZagnGkdbA4jsRyJHgCY9ITKJ7T76kH/ED6Lh0q7yYYDcyuhhcPVBzOcO7VbQyuSSownjSbZ0VSElVK3sxoOVMyCVUpWPaHmUzpcqi5Fj2js6ovSS5JxNUtGYCY1HTmk50ilA1FyXUfY9xWNnEGHn5T8kb8Swj4gJ0m0+ajtIvzNOzaNJcl1mZhBJjoqa8HQg9yhT6jSMFXhn5HeazmjUYZLSerSfouqSqzLF4Y+XBqpM57OJEHU9xvHjqtFPiYJgjxCbUaHagHvWWpgGHSR6/NJrIujDws3MxLToR8kefquLUwDhoZ9CteCyhthHPnIVRySbpoTgvI3l6mZZy+48/vzVl60snaBjMx/TquT7u/qunXcSIWV7LLnyxvk0jwYSqVlUuU1PUSpKXmVyvTOCgpS3KShLkmBYKhKGVaQFAogUMK0AQpb2JwVwihiTh5BRU8E0w43sE+VYKNqFb8g2QBAEDorLkouUzK7JoZmVZ0tzrJdA9lvcPklZW00FyrMl5lRKLGkMzIC6/cPn9lAHTcICBPh8v+Umykh2ZIxjA4AEkCbx6SidB1v0KzVsKHaGPkom3VUXFCn8Nm7Hg9D/CzVKNRuon1Ca9zm2Njs4b951Rf6x7de1128CFzNQ8+DZWZffaCIjlbz5pjcS4aPPjf5rWKrHCXNjqRbzQvwbDpbuT7OXWLDcvMGljH/2nvsmHGgfEPK6zuwJ2d5pZw7xp6FPdkiFRZ0GYhpuD52TJXIeXaEHyQ06xb9lNZ/VC2HYJQuKwNxh71opudv4BaRyKXQW2i3TMgkaIH59neBRSrlDSYIQalQbShrExJELRKB91nKPHUaOerV1WwUC5jQ9DKkpQcpmXo2cIwlCShLkJKQDGuRBJBRAoAdKkpWZTMnYx2ZVmSsymZFgNzqZ0mVJSsKG51eZJlTMiwGvfY9xQ0ndkdw+SVUdYjoVKbrDuHySvkquB5cqzJcoS5MAKtXLobG8cj+yFmJcTdk9W/wApb6EjVZ5cy23osJSknz0Nkkzoiu3SQrzLDSqMOtkx7tm9kdPqU1k8w2mh5BsVldQLbsPgVYqka3RtrA7x3ptxl1BWjLUIJ7Ug+Y/hGHFtxMdLjxWh7QdRKzuw35TCzcGuhSkmNZiDEkeI/ZOD5uFidVIsR+/grpuE2MG3QeKI5X5htNkoSB0SnVwLEz1iB/KZK03JioB9Fp2juUptgQilRFK7CyKSqUQBJS6gRkpZdIUSGjPVKUicUK52WdeVcpcqZl3nHQyVUoJUlAUMlSUEqpQFDJUlBKqUBQwOUlLlXKB0HKmZLzKSlYUMzKiVnaZktmR+HmELcTzCjtF5l9mzVKGmbIGvBUCqxVwNzIZQypKdhQUqihlRKxiqmGB0sk5XNWuVcrN40+UWpMyNrcx5fsnsLDc3jQWUfSB2SHYcjRRUo/eVaYZqGZmOh0/ZOY4xLoCy+8cNUTqwd8WySnQ2jTII2ISX4cHSyENGoMI2vduJ6hVal1QqroJNNw7vNWMQdNO6B5rWxpOgJQVKPMJPG+qDd6gsrg7H76JwqGCNj3LMynlPROVRb8xOiFUoUsFDkOiy8JFRyItNyNtUolYybZSQJUhQowApGbZVyoou056JKiiiAokqSoolYElSVFEBRJUUUQMkqlFECEVWEHMEbKgdyDuZ08eStRYS8L4NVyjPVBB7Uo6dYjqPvRRRS/DKkUuUaM3O087KFRRbp8tGTXmRRRRMRJVqKJjKUUUSEQhLdRBUUSaTKQp2H5ISHDmoospQS5RaZG1itIVKIg2EglFFFoSC4rO56iixky0A5yEqKKBkRip0HkoogD//2Q==",
+          "category": "Forts"
+        }
+      ]
+    },
+    {
+      "state": "Goa",
+      "places": [
+        {
+          "id": 43,
+          "name": "Baga Beach",
+          "location": "Baga",
+          "description": "A popular beach and tourist destination in North Goa.",
+          "image": "https://resources.thomascook.in/images/holidays/sightSeeing/49245_Baga_Beach_Goa_India_960.jpg",
+          "category": "Beaches"
+        },
+        {
+          "id": 44,
+          "name": "Basilica of Bom Jesus",
+          "location": "Old Goa",
+          "description": "A UNESCO World Heritage Site and one of the oldest churches in Goa.",
+          "image": "https://www.holidify.com/images/cmsuploads/compressed/shutterstock_1073481062_20190822145857.jpg",
+          "category": "Heritage Sites"
+        },
+        {
+          "id": 45,
+          "name": "Dudhsagar Falls",
+          "location": "Sonaulim",
+          "description": "A four-tiered waterfall located on the Mandovi River.",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtsF1NWKgzVdtvq09vD9YURrF-oZrxONmOIr1tKiKBmI--2oCCCSpRPwMOBJs_up4k5j8&usqp=CAU",
+          "category": "Waterfalls"
+        },
+        {
+          "id": 46,
+          "name": "Aguada Fort",
+          "location": "Sinquerim",
+          "description": "A well-preserved seventeenth-century Portuguese fort standing on Sinquerim Beach.",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Fort_aguada.jpg",
+          "category": "Fortresses"
+        }
+      ]
+    },
+    {
+      "state": "West Bengal",
+      "places": [
+        {
+          "id": 47,
+          "name": "Victoria Memorial",
+          "location": "Kolkata",
+          "description": "A large marble building in Kolkata, dedicated to the memory of Queen Victoria.",
+          "image": "https://images.unsplash.com/photo-1600080077823-a44592513861?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dmljdG9yaWElMjBtZW1vcmlhbHxlbnwwfHwwfHx8MA%3D%3D",
+          "category": "Historical Places"
+        },
+        {
+          "id": 48,
+          "name": "Howrah Bridge",
+          "location": "Kolkata",
+          "description": "A cantilever bridge with a suspended span over the Hooghly River in West Bengal.",
+          "image": "https://media.istockphoto.com/id/1164386039/photo/howrah-bridge-on-river-ganges-at-kolkata-at-twilight-with-moody-sky.jpg?s=612x612&w=0&k=20&c=CHrNWdInFSDyERdvgd0f8935hZcBQU6lbYCE4LlXqUY=",
+          "category": "Bridges"
+        },
+        {
+          "id": 49,
+          "name": "Sundarbans",
+          "location": "Sundarbans",
+          "description": "A mangrove area in the delta formed by the confluence of the Ganges, Brahmaputra and Meghna Rivers in the Bay of Bengal.",
+          "image": "https://images.unsplash.com/photo-1549300461-11c5b94e8855?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3VuZGFyYmFufGVufDB8fDB8fHww",
+          "category": "Natural Reserves"
+        },
+        {
+          "id": 50,
+          "name": "Darjeeling",
+          "location": "Darjeeling",
+          "description": "A town in India's West Bengal state, in the Himalayan foothills.",
+          "image": "https://t4.ftcdn.net/jpg/00/89/37/43/360_F_89374356_utbWjFSBpvKHs6KtSZlpfOtOdrYADVPy.jpg",
+          "category": "Hill Stations"
+        }
+      ]
+    },
+    {
+      "state": "Gujarat",
+      "places": [
+        {
+          "name": "Statue of Unity",
+          "location": "Kevadia",
+          "description": "The world's tallest statue, located in the state of Gujarat.",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrpfJqf-neOfYOHwaxsI1Leg309Y2sJfZZlw&s",
+          "category": "Landmarks"
+        },
+        {
+          "name": "Gir National Park",
+          "location": "Gir",
+          "description": "A wildlife sanctuary in Gujarat, home to the Asiatic lions.",
+          "image": "https://www.insideindianjungles.com/wp-content/uploads/2019/07/featured.jpg",
+          "category": "National Parks"
+        },
+        {
+          "name": "Rann of Kutch",
+          "location": "Kutch",
+          "description": "A large area of salt marshes located in the Thar Desert.",
+          "image": "https://www.gujarattourism.com/content/dam/gujrattourism/images/weekend-get-aways/great-rann-of-kutch/gallery/Great%20Rann%20Of%20Kutch%20(14).jpg",
+          "category": "Natural Wonders"
+        },
+        {
+          "name": "Sabarmati Ashram",
+          "location": "Ahmedabad",
+          "description": "One of the residences of Mahatma Gandhi who lived there for about twelve years.",
+          "image": "https://www.gujarattourism.com/content/dam/gujrattourism/images/gandhi-circuit/sabarmati-ashram-(gandhi-smarak-sangrahalaya)/Sabarmati-Ashram-2.jpg",
+          "category": "Historical Places"
+        }
+      ]
+    },    
+    {
+      "state": "Madhya Pradesh",
+      "places": [
+        {
+          "name": "Khajuraho Temples",
+          "location": "Khajuraho",
+          "description": "A group of Hindu and Jain temples in Madhya Pradesh, famous for their nagara-style architectural symbolism and their erotic sculptures.",
+          "image": "https://media.istockphoto.com/id/508628776/photo/sunset-over-kandariya-mahadeva-temple.jpg?s=612x612&w=0&k=20&c=YOpVZmLiY4ccl_aoWRJhfqLpNEDgjyOGuTAKbobCO-U=",
+          "category": "Historical Places"
+        },
+        {
+          "name": "Sanchi Stupa",
+          "location": "Sanchi",
+          "description": "A Buddhist complex, famous for its Great Stupa, on a hilltop at Sanchi Town.",
+          "image": "https://t4.ftcdn.net/jpg/04/57/97/49/360_F_457974921_gxHEw72vBsowfYXDLHpYTRUM0dj0Sw5t.jpg",
+          "category": "Religious Sites"
+        },
+        {
+          "name": "Bandhavgarh National Park",
+          "location": "Umaria",
+          "description": "A national park with a large biodiversity, known for its large population of Bengal tigers.",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaMpb20RvosBmtO34Gd2uN8iO1MjJ9Y9u6fg&s",
+          "category": "National Parks"
+        },
+        {
+          "name": "Kanha National Park",
+          "location": "Mandla",
+          "description": "A vast expanse of grassland and forest in the central Indian state of Madhya Pradesh.",
+          "image": "https://media.istockphoto.com/id/1088382834/photo/tiger-in-its-habitat.jpg?s=612x612&w=0&k=20&c=7-40MIsM0rJWQXIceF7ZqZEYBTUXEtGmjCfh8dClLBQ=",
+          "category": "Natural Reserves"
+        }
+      ]
+    },    
+    {
+      "state": "Odisha",
+      "places": [
+        {
+          "name": "Konark Sun Temple",
+          "location": "Konark",
+          "description": "A 13th-century CE sun temple at Konark about 35 kilometers northeast from Puri on the coastline of Odisha.",
+          "image": "https://t4.ftcdn.net/jpg/05/45/40/15/360_F_545401584_r4Fs1INFeiCzvz3Mi4Tk7cCqQNZp1dQn.jpg",
+          "category": "Historical Places"
+        },
+        {
+          "name": "Jagannath Temple",
+          "location": "Puri",
+          "description": "A famous, sacred Hindu temple dedicated to Jagannath, a form of Vishnu, in Puri.",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs5_fnU3UCfx1oOkPzkSEtcHfsEhNQ0G1ncw&s",
+          "category": "Religious Sites"
+        },
+        {
+          "name": "Chilika Lake",
+          "location": "Puri",
+          "description": "A brackish water lagoon, spread over the Puri, Khurda and Ganjam districts of Odisha.",
+          "image": "https://www.shutterstock.com/image-photo/beautiful-chilika-lake-rambha-odisha-600nw-1078131647.jpg",
+          "category": "Natural Attractions"
+        },
+        {
+          "name": "Lingaraja Temple",
+          "location": "Bhubaneswar",
+          "description": "A Hindu temple dedicated to Shiva and is one of the oldest temples in Bhubaneswar.",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6ospOffd7m2d-_WMeZK3gbgDhqz_6tGGYkqOlQ1p84A&s",
+          "category": "Religious Sites"
+        }
+      ]
+    },    
+    [
+      {
+        "state": "Assam",
+        "places": [
+          {
+            "id": 63,
+            "name": "Kaziranga National Park",
+            "location": "Kanchanjuri",
+            "description": "A national park in Assam, northeastern India, known for its population of the great Indian one-horned rhinoceroses.",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq_8Sxbc5NVaJ7vJFKqjWFc2M7uV1hw1d2iLc3COxPxA&s",
+            "category": "National Parks"
+          },
+          {
+            "id": 64,
+            "name": "Kamakhya Temple",
+            "location": "Guwahati",
+            "description": "A Hindu temple dedicated to the mother goddess Kamakhya.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/5/58/Maa_Kamakhya_temple.jpg",
+            "category": "Temples"
+          },
+          {
+            "id": 65,
+            "name": "Majuli",
+            "location": "Majuli",
+            "description": "A river island in the Brahmaputra River, Assam.",
+            "image": "https://staging-tashi-marketplace.s3-us-west-2.amazonaws.com/cms/blog_content-1623589883567.jpeg",
+            "category": "Islands"
+          },
+          {
+            "id": 66,
+            "name": "Sivasagar",
+            "location": "Sivasagar",
+            "description": "A town with a rich cultural heritage and numerous historical monuments.",
+            "image": "https://live.staticflickr.com/3654/3591998344_4eeb0ac272_b.jpg",
+            "category": "Historical Places"
+          }
+        ]
+      },
+      {
+        "state": "Punjab",
+        "places": [
+          {
+            "id": 67,
+            "name": "Golden Temple",
+            "location": "Amritsar",
+            "description": "A gurdwara located in the city of Amritsar, Punjab, India.",
+            "image": "https://media.istockphoto.com/id/543179390/photo/golden-temple-the-main-sanctuary-of-sikhs-amritsar-india.jpg?s=612x612&w=0&k=20&c=s4bOWzg0e0ecBBPmuzIEShhrmMWFE16cnYlAZ7Nfdeg=",
+            "category": "Religious Sites"
+          },
+          {
+            "id": 68,
+            "name": "Jallianwala Bagh",
+            "location": "Amritsar",
+            "description": "A public garden in Amritsar, and houses a memorial of national importance.",
+            "image": "https://as1.ftcdn.net/v2/jpg/03/45/47/72/1000_F_345477212_JkTzkNw1IGDybsV8kZmahdnWl0faYrwh.jpg",
+            "category": "Historical Places"
+          },
+          {
+            "id": 69,
+            "name": "Wagah Border",
+            "location": "Amritsar",
+            "description": "A border crossing between India and Pakistan, known for the Wagah border ceremony.",
+            "image": "https://t3.ftcdn.net/jpg/03/01/29/02/360_F_301290247_3e6PmjLH0CLZ8wIIo8GUxFbkSyTCmBDf.jpg",
+            "category": "Historical Places"
+          },
+          {
+            "id": 70,
+            "name": "Rock Garden",
+            "location": "Chandigarh",
+            "description": "A sculpture garden in Chandigarh, India.",
+            "image": "https://img.veenaworld.com/wp-content/uploads/2021/03/Rock-Garden-Chandigarh-scaled.jpg",
+            "category": "Gardens"
+          }
+        ]
+      }
+    ]
+  ] 
