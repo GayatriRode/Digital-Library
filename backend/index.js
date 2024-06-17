@@ -123,50 +123,52 @@ app.get('/admin-dashboard', async (req, res) => {
 });
 
 app.post('/add-book', async (req, res) => {
-  const {
-    publicationHouseName,
-    authorName,
-    name,
-    publishedYear,
-    description,
-    photo,
-    totalCopies,
-    price,
-  } = req.body;
-
   try {
-    let publisher = await Publisher.findOne({ name: publicationHouseName });
+    const { publicationHouseName, authorName, name, publishedYear, description, photo, totalCopies, price } = req.body;
 
-    if (!publisher) {
-      publisher = new Publisher({ name: publicationHouseName, authors: [] });
+    // Validate required fields
+    if (!publicationHouseName || !authorName || !name || !publishedYear || !description || !photo || !totalCopies || !price) {
+      return res.status(400).json({ error: "Missing required fields" });
     }
 
-    let author = publisher.authors.find(author => author.name === authorName);
-
-    if (!author) {
-      author = { name: authorName, books: [] };
-      publisher.authors.push(author);
-    } else {
-      author = publisher.authors.id(author._id);
-    }
-
-    author.books.push({
+    // Create the new book object
+    const newBook = {
       name,
       year: publishedYear,
-      copies: totalCopies,
-      availableCopies: totalCopies,
-      price,
+      copies: parseInt(totalCopies),
+      availableCopies: parseInt(totalCopies), // Initially all copies are available
+      price: parseFloat(price),
       description,
       imageUrl: photo
-    });
+    };
 
-    // Save the updated publisher
-    await publisher.save();
+    // Find or create the publisher
+    let publisherDoc = await Publisher.findOne({ name: publicationHouseName });
 
-    res.status(201).json({ message: 'Book added successfully' });
-  } catch (error) {
-    console.error('Error adding book:', error);
-    res.status(500).json({ message: 'Failed to add book', error: error.message });
+    if (publisherDoc) {
+      // Publisher exists, add book to existing publisher
+      publisherDoc.authors.forEach(author => {
+        if (author.name === authorName) {
+          author.books.push(newBook);
+        }
+      });
+      if (!publisherDoc.authors.find(author => author.name === authorName)) {
+        publisherDoc.authors.push({ name: authorName, books: [newBook] });
+      }
+    } else {
+      // Publisher does not exist, create new publisher and add book
+      publisherDoc = new Publisher({
+        name: publicationHouseName,
+        authors: [{ name: authorName, books: [newBook] }]
+      });
+    }
+
+    // Save the publisher document
+    await publisherDoc.save();
+    res.status(201).json(publisherDoc);
+  } catch (err) {
+    console.error("Error adding book:", err);
+    res.status(500).json({ error: "Could not add book" });
   }
 });
 

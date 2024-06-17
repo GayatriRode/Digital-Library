@@ -17,7 +17,7 @@ const Header = () => {
   useEffect(() => {
     const slideInterval = setInterval(() => {
       setCurrentSlide((prev) => (prev === banners.length - 1 ? 0 : prev + 1));
-    }, 6000);
+    }, 3000);
     return () => clearInterval(slideInterval);
   }, [banners.length]);
 

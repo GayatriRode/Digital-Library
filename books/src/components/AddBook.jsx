@@ -15,6 +15,18 @@ const AddBook = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  const resetForm = () => {
+    setPublicationHouseName('');
+    setAuthorName('');
+    setName('');
+    setPublishedYear('');
+    setDescription('');
+    setPhoto('');
+    setTotalCopies('');
+    setPrice('');
+    setError('');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -33,20 +45,12 @@ const AddBook = () => {
       const response = await axios.post('http://localhost:8000/add-book', newBook);
       console.log('Server response:', response.data);
       alert('Book added successfully');
-      setPublicationHouseName('');
-      setAuthorName('');
-      setName('');
-      setPublishedYear('');
-      setDescription('');
-      setPhoto('');
-      setTotalCopies('');
-      setPrice('');
-      setError('');
+      resetForm();
     } catch (error) {
       console.error('Error adding book:', error);
       if (error.response) {
         console.error('Server error response:', error.response.data);
-        setError(error.response.data.message);
+        setError(error.response.data.message || 'Failed to add book');
       } else {
         setError('Failed to add book');
       }

@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const bookSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  year: { type: Number, required: true },
-  copies: { type: Number, required: true },
-  availableCopies: { type: Number, required: true },
-  price: { type: Number, required: true },
+  name: { type: String, required: true, unique: true },
+  year: { type: Number, required: true, min: 0 },
+  copies: { type: Number, required: true, min: 1 },
+  availableCopies: { type: Number, required: true, default: function() { return this.copies; } },
+  price: { type: Number, required: true, min: 0 },
   description: { type: String, required: true },
   imageUrl: { type: String, required: true }
 });
@@ -16,9 +16,17 @@ const authorSchema = new mongoose.Schema({
 });
 
 const publisherSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  name: { type: String, required: true, unique: true },
   authors: [authorSchema]
 });
+
+bookSchema.index({ name: 1 });
+publisherSchema.index({ name: 1 });
+
+bookSchema.methods.updateAvailableCopies = async function(newAvailableCopies) {
+  this.availableCopies = newAvailableCopies;
+  await this.save();
+};
 
 const Publisher = mongoose.model('Publisher', publisherSchema);
 

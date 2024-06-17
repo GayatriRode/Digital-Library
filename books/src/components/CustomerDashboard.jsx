@@ -10,6 +10,8 @@ const CustomerDashboard = () => {
   const [selectedBook, setSelectedBook] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const booksPerPage = 4; // Number of books to display per page
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,6 +29,23 @@ const CustomerDashboard = () => {
 
     fetchBooks();
   }, []);
+
+  // Calculate current books to display based on pagination
+  const indexOfLastBook = currentPage * booksPerPage;
+  const indexOfFirstBook = indexOfLastBook - booksPerPage;
+  const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const nextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const prevPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
 
   const openModal = (book) => {
     setSelectedBook(book);
@@ -128,28 +147,51 @@ const CustomerDashboard = () => {
 
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {books.map((publisher) =>
-            publisher.authors.map((author) =>
-              author.books.map((book) => (
-                <div key={book._id} className="bg-white rounded-lg overflow-hidden shadow-md relative">
-                  <img src={book.imageUrl} alt={book.name} className="w-full h-40 object-cover object-center" />
-                  <div className="p-4">
-                    <h2 className="text-xl font-semibold text-gray-800">{book.name}</h2>
-                    <p className="text-sm text-gray-600">{author.name}</p>
-                    <p className="text-sm text-gray-600">{publisher.name}</p>
-                    <p className="mt-2 font-bold text-gray-800">Rs. {book.price}</p>
-                    <p className="mt-2 text-gray-700">Available Copies: {book.availableCopies}</p>
-                    <div className="mt-4 flex justify-between items-center">
-                      <button onClick={() => openModal(book)} className="px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600">View More</button>
-                      <button onClick={() => handleAddToWishlist(book)} className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
-                        {wishlist.some((item) => item._id === book._id) ? 'Added to Wishlist' : 'Add to Wishlist'}
-                      </button>
-                    </div>
-                  </div>
+          {currentBooks.map((book) => (
+            <div key={book._id} className="bg-white rounded-lg overflow-hidden shadow-md relative">
+              <img src={book.imageUrl} alt={book.name} className="w-full h-40 object-cover object-center" />
+              <div className="p-4">
+                <h2 className="text-xl font-semibold text-gray-800">{book.name}</h2>
+                <p className="text-sm text-gray-600">Author: {book.author}</p>
+                <p className="text-sm text-gray-600">Publication: {book.publication}</p>
+                <p className="mt-2 font-bold text-gray-800">Rs. {book.price}</p>
+                <p className="mt-2 text-gray-700">Available Copies: {book.availableCopies}</p>
+                <div className="mt-4 flex justify-between items-center">
+                  <button onClick={() => openModal(book)} className="px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600">View More</button>
+                  <button onClick={() => handleAddToWishlist(book)} className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+                    {wishlist.some((item) => item._id === book._id) ? 'Added to Wishlist' : 'Add to Wishlist'}
+                  </button>
                 </div>
-              ))
-            )
-          )}
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        {/* Pagination */}
+        <div className="flex justify-center mt-4">
+          <button
+            onClick={prevPage}
+            className={`px-3 py-1 mx-1 rounded ${currentPage === 1 ? 'bg-gray-300 text-gray-700 cursor-not-allowed' : 'bg-gray-300 text-gray-700 hover:bg-gray-400 hover:text-gray-800'}`}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </button>
+          {Array.from({ length: Math.ceil(books.length / booksPerPage) }, (_, index) => (
+            <button
+              key={index}
+              onClick={() => paginate(index + 1)}
+              className={`px-3 py-1 mx-1 rounded ${currentPage === index + 1 ? 'bg-indigo-500 text-white' : 'bg-gray-300 text-gray-700 hover:bg-gray-400 hover:text-gray-800'}`}
+            >
+              {index + 1}
+            </button>
+          ))}
+          <button
+            onClick={nextPage}
+            className={`px-3 py-1 mx-1 rounded ${currentPage === Math.ceil(books.length / booksPerPage) ? 'bg-gray-300 text-gray-700 cursor-not-allowed' : 'bg-gray-300 text-gray-700 hover:bg-gray-400 hover:text-gray-800'}`}
+            disabled={currentPage === Math.ceil(books.length / booksPerPage)}
+          >
+            Next
+          </button>
         </div>
       </div>
 
@@ -160,7 +202,7 @@ const CustomerDashboard = () => {
           <div className="bg-white p-8 rounded-lg shadow-lg z-50 max-w-md w-full">
             <button onClick={closeModal} className="absolute top-0 right-0 mt-2 mr-2 text-gray-600 hover:text-gray-800">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="              M6 18L18 6M6 6l12 12"></path>
               </svg>
             </button>
             <img src={selectedBook.imageUrl} alt={selectedBook.name} className="w-full h-64 object-cover object-center mb-4" />
@@ -184,3 +226,4 @@ const CustomerDashboard = () => {
 };
 
 export default CustomerDashboard;
+

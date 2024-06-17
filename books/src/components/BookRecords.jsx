@@ -9,11 +9,11 @@ const BookRecords = () => {
     const [selectedBook, setSelectedBook] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [booksPerPage] = useState(10); // Number of books per page
+    const [booksPerPage] = useState(10); 
 
     useEffect(() => {
         fetchBooks();
-    }, [currentPage]); // Fetch books whenever currentPage changes
+    }, [currentPage]); 
 
     const fetchBooks = async () => {
         try {
@@ -38,7 +38,7 @@ const BookRecords = () => {
     const deleteBook = async (bookId) => {
         try {
             await axios.delete(`http://localhost:8000/books/${bookId}`);
-            fetchBooks(); // Refresh book list after deletion
+            fetchBooks(); 
         } catch (error) {
             console.error('Error deleting book:', error);
         }
@@ -57,8 +57,8 @@ const BookRecords = () => {
         event.preventDefault();
         try {
             await axios.put(`http://localhost:8000/books/${selectedBook._id}`, selectedBook);
-            closeModal(); // Close modal after successful update
-            fetchBooks(); // Refresh book list after update
+            closeModal(); 
+            fetchBooks(); 
         } catch (error) {
             console.error('Error updating book:', error);
         }
@@ -66,7 +66,6 @@ const BookRecords = () => {
 
     return (
         <div className="min-h-screen bg-gray-100">
-            {/* Navigation Bar */}
             <nav className="sticky top-0 z-50 flex justify-between items-center py-4 px-6 bg-indigo-500 text-gray-100 shadow-md">
                 <div className="flex items-center">
                     <img className="h-10" src={logo} alt="logo" />
@@ -80,7 +79,6 @@ const BookRecords = () => {
                 </div>
             </nav>
 
-            {/* Main Content */}
             <div className="max-w-7xl mx-auto p-4">
                 <h2 className="text-2xl font-bold mb-4">Book Records</h2>
                 {error && <p className="text-red-500">{error}</p>}
@@ -92,6 +90,7 @@ const BookRecords = () => {
                                 <th className="py-2 px-4 font-semibold uppercase">Author</th>
                                 <th className="py-2 px-4 font-semibold uppercase">Book Name</th>
                                 <th className="py-2 px-4 font-semibold uppercase">Published Year</th>
+                                <th className="py-2 px-4 font-semibold uppercase">Image</th>
                                 <th className="py-2 px-4 font-semibold uppercase">Total Copies</th>
                                 <th className="py-2 px-4 font-semibold uppercase">Purchased Copies</th>
                                 <th className="py-2 px-4 font-semibold uppercase">Available Copies</th>
@@ -116,6 +115,11 @@ const BookRecords = () => {
                                             )}
                                             <td className="py-2 px-4">{book.name}</td>
                                             <td className="py-2 px-4">{book.year}</td>
+                                            <td className="py-2 px-4">
+                                                <div className="h-12 w-12 overflow-hidden rounded-full">
+                                                    <img src={book.imageUrl} alt={book.name} className="h-full w-full object-cover" />
+                                                </div>
+                                            </td>
                                             <td className="py-2 px-4">{book.copies}</td>
                                             <td className="py-2 px-4">{book.purchasedCopies}</td>
                                             <td className="py-2 px-4">{book.availableCopies}</td>
@@ -135,7 +139,6 @@ const BookRecords = () => {
                 </div>
             </div>
 
-            {/* Pagination */}
             <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
                 <button
                     onClick={() => paginate(currentPage - 1)}
@@ -156,7 +159,6 @@ const BookRecords = () => {
                 </button>
             </div>
 
-            {/* Modal for Editing Book Details */}
             {selectedBook && (
                 <div className={`fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center ${showModal ? '' : 'hidden'}`}>
                     <div className="bg-white rounded-lg p-6 w-full max-w-md">
@@ -187,13 +189,12 @@ const BookRecords = () => {
                                     name="name"
                                     value={selectedBook.name}
                                     onChange={handleInputChange}
-                                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500                                     focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                 />
                             </div>
                             <div className="mb-4">
                                 <label className="block text-sm font-medium text-gray-700">Description</label>
-                                <textarea
-                                    name="description"
+                                <textarea                                     name="description"
                                     value={selectedBook.description}
                                     onChange={handleInputChange}
                                     rows={3}
@@ -204,8 +205,19 @@ const BookRecords = () => {
                                 <label className="block text-sm font-medium text-gray-700">Image URL</label>
                                 <input
                                     type="text"
-                                    name="image"
-                                    value={selectedBook.image}
+                                    name="imageUrl"
+                                    value={selectedBook.imageUrl}
+                                    onChange={handleInputChange}
+                                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    disabled
+                                />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700">Published Year</label>
+                                <input
+                                    type="text"
+                                    name="year"
+                                    value={selectedBook.year}
                                     onChange={handleInputChange}
                                     className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                 />
@@ -259,7 +271,6 @@ const BookRecords = () => {
                 </div>
             )}
 
-            {/* Back to Top Button */}
             <button
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 className="fixed bottom-4 right-4 bg-gray-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-gray-600 focus:outline-none focus:ring focus:ring-gray-400"
