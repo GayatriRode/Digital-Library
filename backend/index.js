@@ -52,47 +52,82 @@ app.post('/signup', async (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
-  const { username, password } = req.body;
+    const { username, password } = req.body;
+
+    try {
+        const user = await User.findOne({ username });
+        if (!user) {
+            return res.status(401).json({ message: 'Invalid username or password' });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ message: 'Invalid username or password' });
+        }
+
+        // Assuming server returns role
+        res.status(200).json({ message: 'Login successful', role: user.role });
+    } catch (error) {
+        console.error('Login error:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+app.post('/api/logout', async (req, res) => {
+  const userId = req.session.userId;
 
   try {
-    const user = await User.findOne({ username });
-    if (!user) {
-      return res.status(401).json({ message: 'Invalid username or password' });
-    }
+      const user = await User.findById(userId);
+      if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+      }
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid username or password' });
-    }
+      // Update logoutTimes array with new logout time
+      const latestLoginDate = user.loginDates[0];
+      latestLoginDate.logoutTimes.unshift(new Date());
+      await user.save();
 
-    res.status(200).json({ message: 'Login successful', role: user.role });
+      req.session.destroy(err => {
+          if (err) {
+              return res.status(500).json({ message: 'Error logging out' });
+          }
+          res.status(200).json({ message: 'Logout successful' });
+      });
   } catch (error) {
-    console.error('Login error:', error);
-    res.status(500).json({ message: 'Internal server error' });
+      console.error('Logout error:', error);
+      res.status(500).json({ message: 'Internal server error' });
   }
 });
 
-app.post('/logout', async (req, res) => {
-  req.session.destroy(err => {
-      if (err) {
-          return res.status(500).json({ message: 'Error logging out' });
-      }
-      res.status(200).json({ message: 'Logout successful' });
-  });
-});
-
-app.get('/api/customer/:customerId', async (req, res) => {
-  const customerId = req.params.customerId;
-
+app.get('/api/customers', async (req, res) => {
   try {
-    const customer = await Customer.findById(customerId);
-    if (!customer) {
-      return res.status(404).json({ message: 'Customer not found' });
-    }
-    res.status(200).json(customer);
+      const customers = await User.find({ role: 'customer' });
+
+      if (!customers) {
+          return res.status(404).json({ message: 'No customers found' });
+      }
+
+      const customersWithHistory = customers.map(customer => {
+          // Map loginDates to extract required fields
+          const loginHistory = customer.loginDates.map(dateEntry => ({
+              date: dateEntry.date,
+              loginTimes: dateEntry.loginTimes,
+              logoutTimes: dateEntry.logoutTimes
+          }));
+
+          return {
+              _id: customer._id,
+              name: customer.name,
+              phone: customer.phone,
+              email: customer.email,
+              loginDates: loginHistory
+          };
+      });
+
+      res.status(200).json(customersWithHistory);
   } catch (error) {
-    console.error('Error fetching customer data:', error);
-    res.status(500).json({ message: 'Internal server error' });
+      console.error('Error fetching customers:', error);
+      res.status(500).json({ message: 'Internal server error' });
   }
 });
 
@@ -192,70 +227,124 @@ app.get('/books', async (req, res) => {
   }
 });
 
-app.put('/books/:id', async (req, res) => {
-  const bookId = req.params.id;
-  const updatedBookData = req.body; // Ensure this matches your frontend structure
+app.put('/books/:bookId', async (req, res) => {
+  const { bookId } = req.params;
+  const { name, year, copies, availableCopies, description, price } = req.body;
 
   try {
-      // Example: Update book in MongoDB
-      const updatedBook = await Book.findByIdAndUpdate(bookId, updatedBookData, { new: true });
+    // Find the publisher that contains the book with the given bookId
+    const publisher = await Publisher.findOne({ 'authors.books._id': bookId });
 
-      if (!updatedBook) {
-          return res.status(404).send({ error: 'Book not found' });
-      }
+    if (!publisher) {
+      return res.status(404).json({ error: 'Publisher not found' });
+    }
 
-      res.status(200).send(updatedBook);
+    // Find the author containing the book
+    let foundBook = null;
+    let foundAuthor = null;
+    publisher.authors.forEach(author => {
+      author.books.forEach(book => {
+        if (book._id.toString() === bookId) {
+          foundBook = book;
+          foundAuthor = author;
+        }
+      });
+    });
+
+    if (!foundBook) {
+      return res.status(404).json({ error: 'Book not found' });
+    }
+
+    // Update the book fields
+    foundBook.name = name;
+    foundBook.year = year;
+    foundBook.copies = copies;
+    foundBook.availableCopies = availableCopies;
+    foundBook.description = description;
+    foundBook.price = price;
+
+    // Save the updated publisher
+    await publisher.save();
+
+    res.json({ message: 'Book updated successfully', book: foundBook });
   } catch (error) {
-      console.error('Error updating book:', error);
-      res.status(500).send({ error: 'Failed to update book' });
+    console.error('Error updating book:', error);
+    res.status(500).json({ error: 'Failed to update book' });
   }
 });
 
-app.get('/wishlist', async (req, res) => {
+app.delete('/books/:bookId', async (req, res) => {
+  const { bookId } = req.params;
+
   try {
-      const user = await User.findById(req.user.id).populate('wishlist');
-      if (!user) {
-          return res.status(404).json({ error: 'User not found' });
-      }
-      res.json(user.wishlist);
+    // Convert bookId to ObjectId
+    const objectId = new mongoose.Types.ObjectId(bookId);
+
+    // Find the publisher containing the book to be deleted
+    const publisher = await Publisher.findOne({ 'authors.books._id': objectId });
+
+    if (!publisher) {
+      return res.status(404).json({ error: 'Publisher or book not found' });
+    }
+
+    // Update the publisher document to remove the book
+    await Publisher.updateOne(
+      { 'authors.books._id': objectId },
+      { $pull: { 'authors.$[].books': { _id: objectId } } }
+    );
+
+    res.status(200).json({ message: 'Book deleted successfully' });
   } catch (error) {
-      console.error('Error fetching wishlist:', error);
-      res.status(500).json({ error: 'Server error' });
+    console.error('Error deleting book:', error);
+    res.status(500).json({ error: 'Failed to delete book' });
   }
 });
 
-// Add a book to wishlist
-app.put('/wishlist/:bookId', async (req, res) => {
-  try {
-      const user = await User.findById(req.user.id);
-      if (!user) {
-          return res.status(404).json({ error: 'User not found' });
-      }
-      const bookId = req.params.bookId;
-      if (!bookId) {
-          return res.status(400).json({ error: 'Book ID is required' });
-      }
-      if (user.wishlist.includes(bookId)) {
-          return res.status(400).json({ error: 'Book already in wishlist' });
-      }
-      user.wishlist.push(bookId);
-      await user.save();
-      res.json(user.wishlist);
-  } catch (error) {
-      console.error('Error adding to wishlist:', error);
-      res.status(500).json({ error: 'Server error' });
-  }
-});
-
-// Purchase a book
 app.post('/books/purchase/:bookId', async (req, res) => {
+  const { bookId } = req.params;
+
   try {
-      const bookId = req.params.bookId;
-      // Perform purchase logic here
-      res.json({ message: 'Book purchased successfully' });
+    // Find the publisher that contains the book
+    const publisher = await Publisher.findOne({ 'authors.books._id': bookId });
+
+    // Check if the publisher exists
+    if (!publisher) {
+      return res.status(404).json({ message: 'Publisher not found' });
+    }
+
+    let foundBook = null;
+
+    // Loop through authors to find the book and update its availability
+    publisher.authors.forEach(author => {
+      const book = author.books.find(b => b._id.equals(bookId));
+      if (book) {
+        foundBook = book;
+        // Check if there are available copies to purchase
+        if (book.availableCopies > 0) {
+          // Decrement availableCopies by 1 and increment purchasedCopies by 1
+          book.availableCopies -= 1;
+          book.purchasedCopies += 1;
+        } else {
+          return res.status(400).json({ message: 'No available copies' });
+        }
+      }
+    });
+
+    if (!foundBook) {
+      return res.status(404).json({ message: 'Book not found' });
+    }
+
+    // Save the updated publisher document
+    await publisher.save();
+
+    // Respond with success message and updated book object
+    const updatedBook = await Publisher.findOne({ 'authors.books._id': bookId }).select('authors.books.$').exec();
+    return res.status(200).json({ message: 'Purchase successful', book: updatedBook.authors[0].books[0] });
+    
   } catch (error) {
-      console.error('Error purchasing book:', error);
-      res.status(500).json({ error: 'Server error' });
+    // Handle any errors that occur during the process
+    console.error('Error purchasing book:', error);
+    return res.status(500).json({ message: 'Error purchasing book', error });
   }
 });
 

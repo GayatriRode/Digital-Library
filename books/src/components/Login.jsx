@@ -10,10 +10,16 @@ const Login = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
+    setError(''); // Clear previous errors when typing
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formData.username || !formData.password) {
+      setError('Username and password are required.');
+      return;
+    }
 
     try {
       const response = await fetch('http://localhost:8000/login', {
@@ -28,7 +34,6 @@ const Login = () => {
       }
 
       const data = await response.json();
-      // Assuming server returns role
       const { role } = data;
 
       if (role === 'admin') {
@@ -46,7 +51,6 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white rounded-lg overflow-hidden flex w-3/4 shadow-lg">
-        {/* Left side with image */}
         <div className="w-1/2">
           <img
             src="https://img.freepik.com/free-vector/tablet-login-concept-illustration_114360-7863.jpg?size=626&ext=jpg&ga=GA1.1.980550786.1713343498&semt=sph"
@@ -54,15 +58,11 @@ const Login = () => {
             className="h-full w-full object-cover"
           />
         </div>
-        {/* Right side with form */}
         <div className="w-1/2 p-8">
           <h2 className="text-2xl font-bold mb-4">Login</h2>
-          {/* Display success or error messages */}
           {message && <p className="text-green-500 mb-4">{message}</p>}
           {error && <p className="text-red-500 mb-4">{error}</p>}
-          {/* Login form */}
           <form onSubmit={handleSubmit}>
-            {/* Username input */}
             <div className="mb-4">
               <label htmlFor="username" className="block text-sm font-bold text-gray-700 mb-2">
                 Username
@@ -76,7 +76,6 @@ const Login = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
             </div>
-            {/* Password input */}
             <div className="mb-4">
               <label htmlFor="password" className="block text-sm font-bold text-gray-700 mb-2">
                 Password
@@ -90,7 +89,6 @@ const Login = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               />
             </div>
-            {/* Submit button */}
             <div className="flex flex-col items-center">
               <button
                 type="submit"
@@ -100,7 +98,6 @@ const Login = () => {
               </button>
             </div>
           </form>
-          {/* Signup link */}
           <div className="mt-4">
             <p className="text-sm">
               Don't have an account?{' '}

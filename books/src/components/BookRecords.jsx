@@ -9,20 +9,42 @@ const BookRecords = () => {
     const [selectedBook, setSelectedBook] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [booksPerPage] = useState(10); 
+    const [booksPerPage, setBooksPerPage] = useState(8);
 
     useEffect(() => {
         fetchBooks();
-    }, [currentPage]); 
+    }, []);
 
     const fetchBooks = async () => {
         try {
-            const response = await axios.get(`http://localhost:8000/books?page=${currentPage}&limit=${booksPerPage}`);
+            const response = await axios.get('http://localhost:8000/books');
             setBooks(response.data);
+            calculateBooksPerPage();
         } catch (error) {
             console.error('Error fetching books:', error);
             setError('Failed to fetch books');
         }
+    };
+
+    const calculateBooksPerPage = () => {
+        const tableWidth = document.querySelector('.book-records-table').clientWidth;
+        const bookNameColumnWidth = 200; // Adjust according to your actual column width
+        const availableWidth = tableWidth - bookNameColumnWidth; // Remaining width after book names
+
+        const averageBookNameWidth = books.reduce((totalWidth, book) => {
+            return totalWidth + getTextWidth(book.name);
+        }, 0) / books.length;
+
+        const maxBooksPerPage = Math.floor(availableWidth / averageBookNameWidth);
+        setBooksPerPage(maxBooksPerPage > 0 ? maxBooksPerPage : 1); // Ensure at least 1 book per page
+    };
+
+    const getTextWidth = (text) => {
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        context.font = '16px Arial'; // Adjust font size and type as needed
+        const width = context.measureText(text).width;
+        return width;
     };
 
     const openModal = (book) => {
@@ -38,14 +60,68 @@ const BookRecords = () => {
     const deleteBook = async (bookId) => {
         try {
             await axios.delete(`http://localhost:8000/books/${bookId}`);
-            fetchBooks(); 
+            fetchBooks(); // Refetch books after deletion
         } catch (error) {
             console.error('Error deleting book:', error);
         }
     };
 
-    const paginate = (pageNumber) => {
-        setCurrentPage(pageNumber);
+    const updateBook = async () => {
+        try {
+            await axios.put(`http://localhost:8000/books/${selectedBook._id}`, selectedBook);
+            closeModal(); // Close modal after successful update
+            fetchBooks(); // Refetch books after update
+        } catch (error) {
+            console.error('Error updating book:', error);
+        }
+    };
+
+    const renderBooks = () => {
+        const startIndex = (currentPage - 1) * booksPerPage;
+        const endIndex = startIndex + booksPerPage;
+        const booksToRender = books.slice(startIndex, endIndex);
+
+        if (booksToRender.length === 0) {
+            return (
+                <tr>
+                    <td colSpan="10" className="text-center py-4">No books found</td>
+                </tr>
+            );
+        }
+
+        let renderedBooks = [];
+
+        booksToRender.forEach((publisher) => {
+            let publisherRowSpan = publisher.authors.reduce((acc, author) => acc + author.books.length, 0);
+
+            publisher.authors.forEach((author, authorIndex) => {
+                author.books.forEach((book, bookIndex) => {
+                    renderedBooks.push(
+                        <tr key={book._id}>
+                            {(authorIndex === 0 && bookIndex === 0) && (
+                                <td rowSpan={publisherRowSpan} className="border px-4 py-2">{publisher.name}</td>
+                            )}
+                            {(bookIndex === 0) && (
+                                <td rowSpan={author.books.length} className="border px-4 py-2">{author.name}</td>
+                            )}
+                            <td className="border px-4 py-2">{book.name}</td>
+                            <td className="border px-4 py-2"><img src={book.imageUrl} alt={book.name} className="h-16 w-16 object-cover" /></td>
+                            <td className="border px-4 py-2">{book.year}</td>
+                            <td className="border px-4 py-2">{book.price}</td>
+                            <td className="border px-4 py-2">{book.copies}</td>
+                            <td className="border px-4 py-2">{book.availableCopies}</td>
+                            <td className="border px-4 py-2">{book.copies - book.availableCopies}</td>
+                            <td className="border px-4 py-2">
+                                <button onClick={() => openModal(book)} className="bg-green-500 text-white px-4 mx-2 py-2 rounded">Edit</button>
+                                <button onClick={() => deleteBook(book._id)} className="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
+                            </td>
+                        </tr>
+                    );
+                });
+            });
+        });
+
+        return renderedBooks;
     };
 
     const handleInputChange = (event) => {
@@ -53,16 +129,38 @@ const BookRecords = () => {
         setSelectedBook({ ...selectedBook, [name]: value });
     };
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        try {
-            await axios.put(`http://localhost:8000/books/${selectedBook._id}`, selectedBook);
-            closeModal(); 
-            fetchBooks(); 
-        } catch (error) {
-            console.error('Error updating book:', error);
-        }
+        updateBook();
     };
+
+    const totalPages = Math.ceil(books.length / booksPerPage);
+
+    const renderPagination = () => (
+        <div className="flex justify-center mt-4">
+            <button
+                onClick={() => setCurrentPage(currentPage > 1 ? currentPage - 1 : 1)}
+                className={`px-4 py-2 mx-1 rounded ${currentPage === 1 ? 'bg-gray-200 text-gray-700' : 'bg-indigo-500 text-white'}`}
+            >
+                Previous
+            </button>
+            {Array.from({ length: totalPages }, (_, index) => (
+                <button
+                    key={index + 1}
+                    onClick={() => setCurrentPage(index + 1)}
+                    className={`px-4 py-2 mx-1 rounded ${currentPage === index + 1 ? 'bg-indigo-500 text-white' : 'bg-gray-200 text-gray-700'}`}
+                >
+                    {index + 1}
+                </button>
+            ))}
+            <button
+                onClick={() => setCurrentPage(currentPage < totalPages ? currentPage + 1 : totalPages)}
+                className={`px-4 py-2 mx-1 rounded ${currentPage === totalPages ? 'bg-gray-200 text-gray-700' : 'bg-indigo-500 text-white'}`}
+            >
+                Next
+            </button>
+        </div>
+    );
 
     return (
         <div className="min-h-screen bg-gray-100">
@@ -72,216 +170,87 @@ const BookRecords = () => {
                     <h4 className="ml-4 text-lg">Digital Library</h4>
                 </div>
                 <div className="flex items-center space-x-4">
-                    <Link className="text-sm hover:text-gray-400" to="/">Home</Link>
+                    <Link className="text-sm hover:text-gray-400" to="/admin-dashboard">Home</Link>
                     <Link className="text-sm hover:text-gray-400" to="/add-book">Add Book</Link>
                     <Link className="text-sm hover:text-gray-400" to="/book-records">Book Records</Link>
                     <button onClick={() => window.location.href = '/'} className="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
                 </div>
             </nav>
 
-            <div className="max-w-7xl mx-auto p-4">
+            <div className="container mx-auto px-4 py-6">
                 <h2 className="text-2xl font-bold mb-4">Book Records</h2>
-                {error && <p className="text-red-500">{error}</p>}
-                <div className="overflow-x-auto">
-                    <table className="max-w-6xl bg-white rounded-lg overflow-hidden">
-                        <thead className="bg-gray-800 text-white">
-                            <tr>
-                                <th className="py-2 px-4 font-semibold uppercase">Publisher</th>
-                                <th className="py-2 px-4 font-semibold uppercase">Author</th>
-                                <th className="py-2 px-4 font-semibold uppercase">Book Name</th>
-                                <th className="py-2 px-4 font-semibold uppercase">Published Year</th>
-                                <th className="py-2 px-4 font-semibold uppercase">Image</th>
-                                <th className="py-2 px-4 font-semibold uppercase">Total Copies</th>
-                                <th className="py-2 px-4 font-semibold uppercase">Purchased Copies</th>
-                                <th className="py-2 px-4 font-semibold uppercase">Available Copies</th>
-                                <th className="py-2 px-4 font-semibold uppercase">Price</th>
-                                <th className="py-2 px-4 font-semibold uppercase">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody className="text-gray-700">
-                            {books.map((publisher) =>
-                                publisher.authors.map((author, index) => (
-                                    author.books.map((book, bIndex) => (
-                                        <tr key={book._id}>
-                                            {index === 0 && bIndex === 0 && (
-                                                <td className="py-2 px-4" rowSpan={author.books.length}>
-                                                    {publisher.name}
-                                                </td>
-                                            )}
-                                            {bIndex === 0 && (
-                                                <td className="py-2 px-4" rowSpan={author.books.length}>
-                                                    {author.name}
-                                                </td>
-                                            )}
-                                            <td className="py-2 px-4">{book.name}</td>
-                                            <td className="py-2 px-4">{book.year}</td>
-                                            <td className="py-2 px-4">
-                                                <div className="h-12 w-12 overflow-hidden rounded-full">
-                                                    <img src={book.imageUrl} alt={book.name} className="h-full w-full object-cover" />
-                                                </div>
-                                            </td>
-                                            <td className="py-2 px-4">{book.copies}</td>
-                                            <td className="py-2 px-4">{book.purchasedCopies}</td>
-                                            <td className="py-2 px-4">{book.availableCopies}</td>
-                                            <td className="py-2 px-4">{book.price}</td>
-                                            <td className="py-2 px-4">
-                                                <div className="flex space-x-2">
-                                                    <button onClick={() => openModal(book)} className="bg-blue-500 text-white px-3 py-1 rounded">Edit</button>
-                                                    <button onClick={() => deleteBook(book._id)} className="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))
-                                ))
-                            )}
-                        </tbody>
-                    </table>
-                </div>
+                {error && <div className="text-red-500">{error}</div>}
+                <table className="min-w-full bg-white border-collapse border border-gray-200 book-records-table">
+                    <thead>
+                        <tr>
+                            <th className="border px-4 py-2">Publisher</th>
+                            <th className="border px-4 py-2">Author</th>
+                            <th className="border px-4 py-2">Book Name</th>
+                            <th className="border px-4 py-2">Image</th>
+                            <th className="border px-4 py-2">Year</th>
+                            <th className="border px-4 py-2">Price</th>
+                            <th className="border px-4 py-2">Total Copies</th>
+                            <th className="border px-4 py-2">Available Copies</th>
+                            <th className="border px-4 py-2">Purchase Count</th>
+                            <th className="border px-4 py-2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {renderBooks()}
+                    </tbody>
+                </table>
+                {renderPagination()}
             </div>
 
-            <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
-                <button
-                    onClick={() => paginate(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    className={`bg-gray-200 text-gray-600 px-3 py-1 rounded ${currentPage === 1 ? 'cursor-not-allowed' : 'hover:bg-gray-300'}`}
-                >
-                    Previous
-                </button>
-                <div>
-                    Page {currentPage}
-                </div>
-                <button
-                    onClick={() => paginate(currentPage + 1)}
-                    disabled={books.length < booksPerPage}
-                    className={`bg-gray-200 text-gray-600 px-3 py-1 rounded ${books.length < booksPerPage ? 'cursor-not-allowed' : 'hover:bg-gray-300'}`}
-                >
-                    Next
-                </button>
-            </div>
-
-            {selectedBook && (
-                <div className={`fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center ${showModal ? '' : 'hidden'}`}>
-                    <div className="bg-white rounded-lg p-6 w-full max-w-md">
-                        <h3 className="text-lg font-semibold mb-4">Edit Book</h3>
+            {showModal && selectedBook && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-6 rounded-lg">
+                        <h2 className="text-xl font-bold mb-4">Edit Book</h2>
                         <form onSubmit={handleSubmit}>
                             <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">Publisher</label>
-                                <input
-                                    type="text"
-                                    value={selectedBook.publisher}
-                                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    disabled
-                                />
+                                <label className="block mb-2">Name</label>
+                                <input type="text" name="name" value={selectedBook.name} onChange={handleInputChange} className="w-full px-4 py-2 border rounded" />
                             </div>
                             <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">Author</label>
-                                <input
-                                    type="text"
-                                    value={selectedBook.author}
-                                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    disabled
-                                />
+                                <label className="block mb-2">Published Year</label>
+                                <input type="number" name="year" value={selectedBook.year} onChange={handleInputChange} className="w-full px-4 py-2 border rounded" />
                             </div>
                             <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">Book Name</label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={selectedBook.name}
-                                    onChange={handleInputChange}
-                                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                />
+                                <label className="block mb-2">Total Copies</label>
+                                <input type="number" name="copies" value={selectedBook.copies} onChange={handleInputChange} className="w-full px-4 py-2 border rounded" />
                             </div>
                             <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">Description</label>
-                                <textarea                                     name="description"
-                                    value={selectedBook.description}
-                                    onChange={handleInputChange}
-                                    rows={3}
-                                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                />
+                                <label className="block mb-2">Available Copies</label>
+                                <input type="number" name="availableCopies" value={selectedBook.availableCopies} onChange={handleInputChange} className="w-full px-4 py-2 border rounded" />
                             </div>
                             <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">Image URL</label>
-                                <input
-                                    type="text"
-                                    name="imageUrl"
-                                    value={selectedBook.imageUrl}
-                                    onChange={handleInputChange}
-                                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    disabled
-                                />
+                                <label className="block mb-2">Description</label>
+                                <textarea name="description" value={selectedBook.description} onChange={handleInputChange} className="w-full px-4 py-2 border rounded"></textarea>
                             </div>
                             <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">Published Year</label>
-                                <input
-                                    type="text"
-                                    name="year"
-                                    value={selectedBook.year}
-                                    onChange={handleInputChange}
-                                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">Total Copies</label>
-                                <input
-                                    type="text"
-                                    name="copies"
-                                    value={selectedBook.copies}
-                                    onChange={handleInputChange}
-                                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">Purchased Copies</label>
-                                <input
-                                    type="text"
-                                    name="purchasedCopies"
-                                    value={selectedBook.purchasedCopies}
-                                    onChange={handleInputChange}
-                                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">Available Copies</label>
-                                <input
-                                    type="text"
-                                    name="availableCopies"
-                                    value={selectedBook.availableCopies}
-                                    onChange={handleInputChange}
-                                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700">Price</label>
-                                <input
-                                    type="text"
-                                    name="price"
-                                    value={selectedBook.price}
-                                    onChange={handleInputChange}
-                                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                />
+                                <label className="block mb-2">Price</label>
+                                <input type="number" name="price" value={selectedBook.price} onChange={handleInputChange} className="w-full px-4 py-2 border rounded" />
                             </div>
                             <div className="flex justify-end">
-                                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Save Changes</button>
-                                <button onClick={closeModal} className="ml-2 bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">Cancel</button>
+                                <button
+                                    type="submit"
+                                    className="bg-blue-500 text-white px-4 py-2 rounded"
+                                >
+                                    Update
+                                </button>
+                                <button
+                                    onClick={closeModal}
+                                    className="bg-gray-200 text-gray-700 px-4 py-2 rounded ml-2"
+                                >
+                                    Cancel
+                                </button>
                             </div>
                         </form>
                     </div>
                 </div>
             )}
-
-            <button
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="fixed bottom-4 right-4 bg-gray-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-gray-600 focus:outline-none focus:ring focus:ring-gray-400"
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                </svg>
-            </button>
         </div>
     );
 };
 
 export default BookRecords;
-

@@ -66,7 +66,7 @@ const AddBook = () => {
           <h4 className="ml-4 text-lg">Digital Library</h4>
         </div>
         <div className="flex items-center space-x-4">
-          <Link className="text-sm hover:text-gray-400" to="/">Home</Link>
+          <Link className="text-sm hover:text-gray-400" to="/admin-dashboard">Home</Link>
           <Link className="text-sm hover:text-gray-400" to="/add-book">Add Book</Link>
           <Link className="text-sm hover:text-gray-400" to="/book-records">Book Records</Link>
           <button onClick={() => navigate('/')} className="bg-red-500 text-white px-4 py-2 rounded">Logout</button>

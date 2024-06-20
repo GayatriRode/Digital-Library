@@ -7,7 +7,6 @@ const AdminDashboard = () => {
 
   return (
     <div>
-      {/* Navbar */}
       <nav className="sticky top-0 z-50 flex justify-between items-center py-4 px-6 bg-indigo-500 text-gray-100 shadow-md">
         <div className="flex items-center">
           <img className="h-10" src={logo} alt="logo" />
@@ -21,7 +20,6 @@ const AdminDashboard = () => {
         </div>
       </nav>
 
-      {/* Main Content */}
       <div className="flex justify-center items-center h-screen">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Welcome to Admin Dashboard</h1>
