@@ -19,32 +19,10 @@ const BookRecords = () => {
         try {
             const response = await axios.get('http://localhost:8000/books');
             setBooks(response.data);
-            calculateBooksPerPage();
         } catch (error) {
             console.error('Error fetching books:', error);
             setError('Failed to fetch books');
         }
-    };
-
-    const calculateBooksPerPage = () => {
-        const tableWidth = document.querySelector('.book-records-table').clientWidth;
-        const bookNameColumnWidth = 200; // Adjust according to your actual column width
-        const availableWidth = tableWidth - bookNameColumnWidth; // Remaining width after book names
-
-        const averageBookNameWidth = books.reduce((totalWidth, book) => {
-            return totalWidth + getTextWidth(book.name);
-        }, 0) / books.length;
-
-        const maxBooksPerPage = Math.floor(availableWidth / averageBookNameWidth);
-        setBooksPerPage(maxBooksPerPage > 0 ? maxBooksPerPage : 1); // Ensure at least 1 book per page
-    };
-
-    const getTextWidth = (text) => {
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-        context.font = '16px Arial'; // Adjust font size and type as needed
-        const width = context.measureText(text).width;
-        return width;
     };
 
     const openModal = (book) => {
@@ -141,6 +119,7 @@ const BookRecords = () => {
             <button
                 onClick={() => setCurrentPage(currentPage > 1 ? currentPage - 1 : 1)}
                 className={`px-4 py-2 mx-1 rounded ${currentPage === 1 ? 'bg-gray-200 text-gray-700' : 'bg-indigo-500 text-white'}`}
+                disabled={currentPage === 1}
             >
                 Previous
             </button>
@@ -156,6 +135,7 @@ const BookRecords = () => {
             <button
                 onClick={() => setCurrentPage(currentPage < totalPages ? currentPage + 1 : totalPages)}
                 className={`px-4 py-2 mx-1 rounded ${currentPage === totalPages ? 'bg-gray-200 text-gray-700' : 'bg-indigo-500 text-white'}`}
+                disabled={currentPage === totalPages}
             >
                 Next
             </button>
@@ -171,8 +151,10 @@ const BookRecords = () => {
                 </div>
                 <div className="flex items-center space-x-4">
                     <Link className="text-sm hover:text-gray-400" to="/admin-dashboard">Home</Link>
+                    <Link className="text-sm hover:text-gray-400" to="/customer-records">Customer Records</Link>
                     <Link className="text-sm hover:text-gray-400" to="/add-book">Add Book</Link>
                     <Link className="text-sm hover:text-gray-400" to="/book-records">Book Records</Link>
+                    <Link className="text-sm hover:text-gray-400" to="/order-records">Order Records</Link>
                     <button onClick={() => window.location.href = '/'} className="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
                 </div>
             </nav>

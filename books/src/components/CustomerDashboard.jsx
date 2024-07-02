@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import logo from '../images/logo.jpeg';
 import Swal from 'sweetalert2';
 
@@ -14,11 +14,13 @@ const CustomerDashboard = () => {
   const booksPerPage = 8;
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+  const userId = location.state?.userId || localStorage.getItem('userId');
 
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/books');
+        const response = await axios.get(`http://localhost:8000/books?userId=${userId}`);
         setBooks(response.data);
         setLoading(false);
       } catch (error) {
@@ -37,9 +39,8 @@ const CustomerDashboard = () => {
 
     fetchBooks();
     fetchWishlist();
-  }, []);
+  }, [userId]);
 
-  // Load Font Awesome dynamically
   useEffect(() => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -86,60 +87,57 @@ const CustomerDashboard = () => {
 
   const handleBuyBook = async (book) => {
     try {
-      const response = await axios.post(`http://localhost:8000/books/purchase/${book._id}`);
-      const updatedBook = response.data.book; // Ensure backend sends the updated book data
+      const { value: copies } = await Swal.fire({
+        title: 'Enter number of copies',
+        input: 'number',
+        inputAttributes: {
+          min: 1,
+          max: book.availableCopies,
+          step: 1,
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Buy',
+        cancelButtonText: 'Cancel',
+        inputValidator: (value) => {
+          if (!value || value < 1 || value > book.availableCopies) {
+            return 'Please enter a valid number of copies';
+          }
+        },
+      });
 
-      // Update the books state with the updated book data
-      const updatedBooks = books.map((b) => (b._id === updatedBook._id ? updatedBook : b));
-      setBooks(updatedBooks);
-
-      // Update the selectedBook state if it's currently open in modal
-      if (selectedBook && selectedBook._id === updatedBook._id) {
-        setSelectedBook(updatedBook);
+      if (copies) {
+        const response = await axios.post(`http://localhost:8000/purchase`, { userId, bookId: book._id, copies });
+        const updatedBooks = books.map(item => {
+          if (item._id === book._id) {
+            return {
+              ...item,
+              availableCopies: item.availableCopies - copies,
+              purchasedCopies: item.purchasedCopies + copies,
+            };
+          }
+          return item;
+        });
+        setBooks(updatedBooks);
+        Swal.fire({
+          icon: 'success',
+          title: 'Book Purchased',
+          text: `You have successfully purchased ${book.name}.`,
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'OK',
+        });
       }
-
-      // Show success message
+    } catch (error) {
+      console.error('Error purchasing book:', error);
       Swal.fire({
-        icon: 'success',
-        title: 'Purchase Successful',
-        text: 'You have successfully purchased the book.',
+        icon: 'error',
+        title: 'Purchase Failed',
+        text: 'Failed to purchase the book. Please try again later.',
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'OK',
       });
-    } catch (error) {
-      // Handle errors
-      if (error.response) {
-        console.error('Error buying book - Server responded:', error.response.data);
-        Swal.fire({
-          icon: 'error',
-          title: 'Purchase Failed',
-          text: error.response.data.message || 'Failed to buy book.',
-          confirmButtonColor: '#3085d6',
-          confirmButtonText: 'OK',
-        });
-      } else if (error.request) {
-        console.error('Error buying book - No response received:', error.request);
-        Swal.fire({
-          icon: 'error',
-          title: 'Purchase Failed',
-          text: 'No response received from server.',
-          confirmButtonColor: '#3085d6',
-          confirmButtonText: 'OK',
-        });
-      } else {
-        console.error('Error buying book - Request setup error:', error.message);
-        Swal.fire({
-          icon: 'error',
-          title: 'Purchase Failed',
-          text: error.message || 'Failed to buy book.',
-          confirmButtonColor: '#3085d6',
-          confirmButtonText: 'OK',
-        });
-      }
     }
   };
 
-  // Logic to filter and paginate books
   const filteredBooks = books.flatMap(publisher =>
     publisher.authors.flatMap(author =>
       author.books
@@ -156,7 +154,6 @@ const CustomerDashboard = () => {
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
   const currentBooks = filteredBooks.slice(indexOfFirstBook, indexOfLastBook);
 
-  // Change page
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
   if (loading) {
@@ -177,12 +174,13 @@ const CustomerDashboard = () => {
         <div className="flex items-center space-x-4">
           <Link className="text-sm hover:text-gray-400" to="/customer-dashboard">Home</Link>
           <Link className="text-sm hover:text-gray-400" to="/wishlist">Wishlist ({wishlist.length})</Link>
+          <Link className="text-sm hover:text-gray-400" to="/my-order">My Orders</Link>
+          <Link className="text-sm hover:text-gray-400" to="/feedback">Give Feedback</Link>
           <button onClick={() => navigate('/')} className="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
         </div>
       </nav>
 
       <div className="container mx-auto px-4 py-8">
-        {/* Search Input */}
         <div className="mb-6">
           <input
             type="text"
@@ -190,7 +188,7 @@ const CustomerDashboard = () => {
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);
-              setCurrentPage(1); // Reset to first page on search
+              setCurrentPage(1);
             }}
             className="w-full px-4 py-2 border border-gray-300 rounded"
           />
@@ -227,33 +225,45 @@ const CustomerDashboard = () => {
         ) : (
           <p className="text-center text-gray-600">Search not found</p>
         )}
+
+        {/* Pagination */}
+        <div className="flex justify-center mt-8">
+          {currentBooks.length > 0 && (
+            <ul className="flex space-x-2">
+              {Array.from({ length: Math.ceil(filteredBooks.length / booksPerPage) }, (_, index) => (
+                <li key={index}>
+                  <button
+                    onClick={() => paginate(index + 1)}
+                    className={`px-3 py-1 rounded-md focus:outline-none ${currentPage === index + 1 ? 'bg-indigo-500 text-white' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`}
+                  >
+                    {index + 1}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
 
-      {/* Pagination */}
-      <div className="flex justify-center mt-4">
-        {[...Array(Math.ceil(filteredBooks.length / booksPerPage)).keys()].map(number => (
-          <button key={number + 1} onClick={() => paginate(number + 1)} className={`mx-1 px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600 ${currentPage === number + 1 ? 'bg-indigo-600' : ''}`}>
-            {number + 1}
-          </button>
-        ))}
-      </div>
-
-      {/* Modal */}
+      {/* Modal for Book Details */}
       {selectedBook && (
-        <div className="fixed top-0 left-0 right-0 bottom-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg overflow-hidden shadow-md max-w-md w-full">
-            <div className="p-4">
-              <button onClick={closeModal} className="absolute top-2 right-2 text-gray-700 hover:text-gray-900 focus:outline-none">
+        <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg overflow-hidden shadow-xl max-w-lg w-full p-4">
+            <div className="flex justify-end">
+              <button onClick={closeModal} className="text-gray-400 hover:text-gray-600">
                 <i className="fas fa-times"></i>
               </button>
-              <h2 className="text-2xl font-semibold text-gray-800">{selectedBook.name}</h2>
-              <p className="text-sm text-gray-600">By: {selectedBook.author}</p>
-              <p className="text-sm text-gray-600">Publisher: {selectedBook.publication}</p>
-              <img src={selectedBook.imageUrl} alt={selectedBook.name} className="mt-4 w-full h-60 object-cover object-center" />
-              <p className="mt-4 text-gray-700">{selectedBook.description}</p>
+            </div>
+            <img src={selectedBook.imageUrl} alt={selectedBook.name} className="w-full h-64 object-cover object-center" />
+            <div className="p-4">
+              <h2 className="text-xl font-semibold text-gray-800">{selectedBook.name}</h2>
+              <p className="text-sm text-gray-600">{selectedBook.author}</p>
+              <p className="text-sm text-gray-600">{selectedBook.publication}</p><br/>
+              <p className="text-sm text-gray-600">{selectedBook.description}</p>
               <p className="mt-2 font-bold text-gray-800">Rs. {selectedBook.price}</p>
-              <p className="mt-2 text-gray-700">Available Copies: {selectedBook.availableCopies}</p>
-              <div className="mt-4 flex justify-center">
+              <p className="mt-2">Available Copies: {selectedBook.availableCopies}</p>
+              <div className="mt-4 flex justify-between items-center">
+                <button onClick={() => handleAddToWishlist(selectedBook)} className="px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600">Add to Wishlist</button>
                 <button onClick={() => handleBuyBook(selectedBook)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Buy</button>
               </div>
             </div>

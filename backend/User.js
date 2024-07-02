@@ -1,28 +1,16 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  name: String,
-  phone: String,
-  email: String,
-  username: { type: String, unique: true },
-  password: String,
-  role: { type: String, enum: ['admin', 'customer'] },
-  loginDates: [
-    {
-      date: { type: Date, required: true },
-      loginTimes: [{ type: Date }],
-      logoutTimes: [{ type: Date }],
-    },
-  ],
-  purchases: [{
-    bookId: { type: mongoose.Schema.Types.ObjectId, ref: 'Book' },
-    bookName: String,
-    author: String,
-    price: Number,
-    purchaseDate: { type: Date, default: Date.now }
-  }]
+  name: { type: String, required: true },
+  phone: { type: String, required: true, match: /^[789]\d{9}$/ },
+  email: { type: String, required: true, unique: true, match: /^\S+@\S+\.\S+$/ },
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  role: { type: String, enum: ['customer', 'admin'], default: 'customer' },
+  loginDates: [{
+    loginTime: { type: Date, default: Date.now },
+    logoutTimes: [{ type: Date }],
+  }],
 });
 
-const User = mongoose.model('User', userSchema);
-
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);

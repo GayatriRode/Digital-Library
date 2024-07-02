@@ -8,11 +8,10 @@ import CustomerDashboard from './components/CustomerDashboard';
 import AddBook from './components/AddBook';
 import BookRecords from './components/BookRecords';
 import Wishlist from './components/Wishlist';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { far } from '@fortawesome/free-regular-svg-icons';
-
-library.add(fas, far);
+import CustomerRecords from './components/CustomerRecords';
+import MyOrder from './components/MyOrder';
+import OrderRecords from './components/OrderRecords';
+import Feedback from './components/Feedback'
 
 function App() {
   return (
@@ -27,6 +26,10 @@ function App() {
         <Route path="/add-book" element={<AddBook />} />
         <Route path="/book-records" element={<BookRecords />} />
         <Route path="/wishlist" element={<Wishlist />} />
+        <Route path='/customer-records' element={<CustomerRecords />} />
+        <Route path="/my-order" element={<MyOrder />} />
+        <Route path="/order-records" element={<OrderRecords />} />
+        <Route path="/feedback" element={<Feedback />} />
       </Routes>
     </div>
   );

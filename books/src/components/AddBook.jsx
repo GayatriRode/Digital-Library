@@ -60,18 +60,20 @@ const AddBook = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <nav className="sticky top-0 z-50 flex justify-between items-center py-4 px-6 bg-indigo-500 text-gray-100 shadow-md">
-        <div className="flex items-center">
-          <img className="h-10" src={logo} alt="logo" />
-          <h4 className="ml-4 text-lg">Digital Library</h4>
-        </div>
-        <div className="flex items-center space-x-4">
-          <Link className="text-sm hover:text-gray-400" to="/admin-dashboard">Home</Link>
-          <Link className="text-sm hover:text-gray-400" to="/add-book">Add Book</Link>
-          <Link className="text-sm hover:text-gray-400" to="/book-records">Book Records</Link>
-          <button onClick={() => navigate('/')} className="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
-        </div>
-      </nav>
+      <nav className="sticky top-0 z-50 flex py-4 px-6 bg-indigo-500 text-gray-100 shadow-md">
+                <div className="flex items-center">
+                    <img className="h-10" src={logo} alt="logo" />
+                    <h4 className="ml-4 text-lg px-4">Digital Library</h4>
+                </div>
+                <div className="flex items-center space-x-4">
+                    <Link className="text-sm hover:text-gray-400" to="/admin-dashboard">Home</Link>
+                    <Link className="text-sm hover:text-gray-400" to="/customer-records">Customer Records</Link>
+                    <Link className="text-sm hover:text-gray-400" to="/add-book">Add Book</Link>
+                    <Link className="text-sm hover:text-gray-400" to="/book-records">Book Records</Link>
+                    <Link className="text-sm hover:text-gray-400" to="/order-records">Order Records</Link>
+                    <button onClick={() => window.location.href = '/'} className="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
+                </div>
+            </nav>
 
       <div className="max-w-2xl mx-auto p-4">
         <h2 className="text-2xl font-bold mb-4">Add a Book</h2>

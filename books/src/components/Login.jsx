@@ -10,7 +10,7 @@ const Login = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
-    setError(''); // Clear previous errors when typing
+    setError('');
   };
 
   const handleSubmit = async (e) => {
@@ -30,16 +30,17 @@ const Login = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Login failed');
+        throw new Error(errorData.error || 'Login failed');
       }
 
       const data = await response.json();
-      const { role } = data;
+      const { userId, userType } = data; // Assuming backend returns userId and userType
+      localStorage.setItem('userId', userId);
 
-      if (role === 'admin') {
-        navigate('/admin-dashboard'); // Navigate to admin dashboard
-      } else if (role === 'customer') {
-        navigate('/customer-dashboard'); // Navigate to customer dashboard
+      if (userType === 'admin') {
+        navigate('/admin-dashboard');
+      } else if (userType === 'customer') {
+        navigate('/customer-dashboard', { state: { userId } }); // Pass userId to dashboard
       } else {
         throw new Error('Role not recognized');
       }
@@ -74,6 +75,7 @@ const Login = () => {
                 value={formData.username}
                 onChange={handleChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required
               />
             </div>
             <div className="mb-4">
@@ -87,6 +89,7 @@ const Login = () => {
                 value={formData.password}
                 onChange={handleChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required
               />
             </div>
             <div className="flex flex-col items-center">

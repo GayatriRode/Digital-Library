@@ -29,9 +29,16 @@ const Wishlist = () => {
     setLoading(false);
   }, []);
 
+  const getUserId = () => {
+    // Replace 'user_id_here' with actual logic to fetch user ID from localStorage or context
+    const userId = localStorage.getItem('userId');
+    return userId;
+  };
+
   const handleBuyBook = async (bookId) => {
     try {
-      const response = await axios.post(`http://localhost:8000/books/purchase/${bookId}`);
+      const userId = getUserId(); // Fetch user ID dynamically
+      const response = await axios.post(`http://localhost:8000/purchase`, { userId, bookId, copies: 1 });
       if (response.status === 200) {
         const updatedBook = response.data.book; // Assuming backend sends the updated book data
 
@@ -72,45 +79,26 @@ const Wishlist = () => {
     });
   };
 
-  const fetchLatestBookDetails = async (bookId) => {
-    try {
-      const response = await axios.get(`http://localhost:8000/books/${bookId}`);
-      if (response.status === 200) {
-        return response.data; // Assuming the book data is returned from the endpoint
-      }
-    } catch (error) {
-      console.error('Error fetching book details:', error);
-      throw error;
-    }
-  };
-
   if (loading) {
     return <p className="text-center text-gray-600">Loading wishlist...</p>;
   }
 
   return (
-    <div>
-      {/* Sticky Navbar */}
+    <div className='container'>
       <nav className="sticky top-0 z-50 flex justify-between items-center py-4 px-6 bg-indigo-500 text-gray-100 shadow-md w-full">
         <div className="flex items-center">
           <img className="h-10" src={logo} alt="logo" />
           <h4 className="ml-4 text-lg px-2">Digital Library</h4>
         </div>
         <div className="flex items-center space-x-4">
-          <Link className="text-sm hover:text-gray-400" to="/customer-dashboard">
-            Home
-          </Link>
-          <Link className="text-sm hover:text-gray-400" to="/wishlist">
-            Wishlist ({wishlist.length})
-          </Link>
-          <button onClick={() => navigate('/')} className="bg-red-500 text-white px-4 py-2 rounded">
-            Logout
-          </button>
+          <Link className="text-sm hover:text-gray-400" to="/customer-dashboard">Home</Link>
+          <Link className="text-sm hover:text-gray-400" to="/wishlist">Wishlist ({wishlist.length})</Link>
+          <Link className="text-sm hover:text-gray-400" to="/my-order">My Orders</Link>
+          <button onClick={() => navigate('/')} className="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
         </div>
       </nav>
 
-      {/* Wishlist */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="mx-auto px-4 py-8">
         <h2 className="text-2xl font-bold mb-4">Wishlist</h2>
         {wishlist.length === 0 ? (
           <p className="text-center text-gray-600">Your wishlist is empty.</p>

@@ -18,6 +18,7 @@ const Signup = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
+    setError(''); // Clear previous errors when typing
   };
 
   const handleSubmit = async (e) => {
